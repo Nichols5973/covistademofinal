@@ -10,10 +10,28 @@ const isDesktop = window.matchMedia('(min-width: 900px)');
  * /content first (localhost / aem up), then root (DA/EDS production).
  */
 async function loadNavFragment() {
-  let resp = await fetch('/content/nav.plain.html');
-  if (!resp.ok) resp = await fetch('/nav.plain.html');
-  if (!resp.ok) return null;
-  const html = await resp.text();
+  // Resolve the nav fragment relative to the current page's directory so it
+  // works both on the published EDS site (page at /our-story → /nav.plain.html)
+  // and in the AEM author / Universal Editor canvas (page at
+  // /content/covistademo1/our-story.html → /content/covistademo1/nav.plain.html).
+  const dir = window.location.pathname.replace(/[^/]*$/, '');
+  const candidates = [
+    `${dir}nav.plain.html`,
+    '/content/covistademo1/nav.plain.html',
+    '/content/nav.plain.html',
+    '/nav.plain.html',
+  ];
+  const html = await candidates.reduce(async (prev, url) => {
+    const found = await prev;
+    if (found !== null) return found;
+    try {
+      const resp = await fetch(url);
+      return resp.ok ? resp.text() : null;
+    } catch (e) {
+      return null;
+    }
+  }, Promise.resolve(null));
+  if (!html) return null;
   const tmp = document.createElement('div');
   tmp.innerHTML = html;
   return tmp;

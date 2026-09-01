@@ -23,10 +23,27 @@ function socialKeyFromHref(href) {
  * /content first (localhost / aem up), then root (DA/EDS production).
  */
 async function loadFooterFragment() {
-  let resp = await fetch('/content/footer.plain.html');
-  if (!resp.ok) resp = await fetch('/footer.plain.html');
-  if (!resp.ok) return null;
-  const html = await resp.text();
+  // Resolve the footer fragment relative to the current page's directory so it
+  // works both on the published EDS site (/footer.plain.html) and in the AEM
+  // author / Universal Editor canvas (/content/covistademo1/footer.plain.html).
+  const dir = window.location.pathname.replace(/[^/]*$/, '');
+  const candidates = [
+    `${dir}footer.plain.html`,
+    '/content/covistademo1/footer.plain.html',
+    '/content/footer.plain.html',
+    '/footer.plain.html',
+  ];
+  const html = await candidates.reduce(async (prev, url) => {
+    const found = await prev;
+    if (found !== null) return found;
+    try {
+      const resp = await fetch(url);
+      return resp.ok ? resp.text() : null;
+    } catch (e) {
+      return null;
+    }
+  }, Promise.resolve(null));
+  if (!html) return null;
   const tmp = document.createElement('div');
   tmp.innerHTML = html;
   return tmp;

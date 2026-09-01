@@ -69,23 +69,23 @@
 }
 
 .columns-approach-feature:nth-of-type(1)::before {
-  background-image: url('/icons/icon-expanding-access.png');
+  background-image: url('../../icons/icon-expanding-access.png');
 }
 
 .columns-approach-feature:nth-of-type(2)::before {
-  background-image: url('/icons/icon-preparing-professionals.png');
+  background-image: url('../../icons/icon-preparing-professionals.png');
 }
 
 .columns-approach-feature:nth-of-type(3)::before {
-  background-image: url('/icons/icon-connecting-students.png');
+  background-image: url('../../icons/icon-connecting-students.png');
 }
 
 .columns-approach-feature:nth-of-type(4)::before {
-  background-image: url('/icons/icon-serving-communities.png');
+  background-image: url('../../icons/icon-serving-communities.png');
 }
 
 .columns-approach-feature:nth-of-type(5)::before {
-  background-image: url('/icons/icon-powering-purpose.png');
+  background-image: url('../../icons/icon-powering-purpose.png');
 }
 
 .columns-approach-feature-body {
