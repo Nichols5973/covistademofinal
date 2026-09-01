@@ -1,10 +1,4 @@
-/* Block-local fallbacks for design tokens this block references that aren't
-   defined site-wide. Mapped to the Covista brand. */
-.content-fragment {
-  --black-font-family: acumin-pro-wide-bold, var(--heading-font-family);
-  --main-accent-color: var(--brand-green, #1b4929);
-  --text-light: #fff;
-}
+
 
 .content-fragment-container .content-fragment-wrapper {
   width: 100%;
@@ -32,6 +26,7 @@
   width: 100%;
   height: 100%;
   min-height: 400px;
+  display: block;
   background-size: cover;
   background-position: center;
   margin: 0;
@@ -63,12 +58,12 @@
   line-height: 50px;
   font-family: var(--black-font-family);
 }
-
 .content-fragment-wrapper .content-fragment .banner-content .banner-detail .cftitle::after {
   background-color: var(--main-accent-color);
   content: "";
   display: block;
   height: 5px;
+  margin: auto;
   transition: width .4s ease-in-out;
   width: 128px;
   margin: 10px auto;
@@ -103,9 +98,8 @@
   text-align: left;
   cursor: pointer;
 }
-
 .content-fragment-wrapper .content-fragment .banner-content .banner-detail a::after {
-  font-family: 'Font Awesome 5 Solid', sans-serif;
+  font-family: 'Font Awesome 5 Solid';
   content: "\f105";
   color: var(--text-light);
   font-size: 16px;
@@ -272,7 +266,6 @@
 .content-fragment-wrapper .content-fragment .banner-content.image-bottom .banner-detail .cfdescription {
   color: var(--text-color);
   width: 100%;
-
   /* text-align: left; */
 }
 
@@ -281,7 +274,6 @@
 .content-fragment-wrapper .content-fragment .banner-content.image-top .banner-detail a,
 .content-fragment-wrapper .content-fragment .banner-content.image-bottom .banner-detail a {
   /* text-align: left; */ 
-
   /* align-self: flex-start; */
   color: var(--text-color);
 }
@@ -307,10 +299,10 @@
 
 /* Responsive Styles */
 @media (width < 1024px) {
+
   .content-fragment-container .content-fragment-wrapper {
     padding: 0;
   }
-
   .content-fragment-container .content-fragment-wrapper .content-fragment {
     display: block;
   }
@@ -318,7 +310,6 @@
   .content-fragment-container .content-fragment-wrapper .content-fragment .banner-content {
     display: flex;
   }
-
   .content-fragment-container .content-fragment-wrapper .content-fragment .banner-content .banner-detail {
     padding: 10px;
   }
@@ -327,12 +318,10 @@
     font-size: 25px;
     font-family: var(--heading-font-family);
   }
-
   .content-fragment-container .content-fragment-wrapper .content-fragment .banner-content .banner-detail .cfsubtitle {
     font-size: 20px;
     font-family: var(--heading-font-family);
   }
-
   .content-fragment-container .content-fragment-wrapper .content-fragment .banner-content .banner-detail .cfdescription {
     width: 90%;
   }
@@ -340,6 +329,7 @@
 
 
 @media (width < 768px) {
+
   .content-fragment-container .content-fragment-wrapper {
     padding: 0;
   }
@@ -365,7 +355,10 @@
   
   .content-fragment-wrapper .content-fragment .banner-content.image-left .banner-detail,
   .content-fragment-wrapper .content-fragment .banner-content.image-right .banner-detail {
-    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
     padding: 40px 20px;
     text-align: center;
     align-items: center;
@@ -448,9 +441,7 @@
   text-align: center;
   align-items: center;
 }
-
-/* for top and bottom layouts */
-
+/*for top and bottom layouts*/
 /* Override text alignment for top/bottom layouts */
 .content-fragment-wrapper .content-fragment .banner-content.image-top .banner-detail.text-left .cfdescription,
 .content-fragment-wrapper .content-fragment .banner-content.image-bottom .banner-detail.text-left .cfdescription {
@@ -462,7 +453,6 @@
   text-align: left;
   align-self: flex-start;
 }
-
 .content-fragment-wrapper .content-fragment .banner-content.image-top .banner-detail.text-right .cfdescription,
 .content-fragment-wrapper .content-fragment .banner-content.image-bottom .banner-detail.text-right .cfdescription {
   text-align: right;
@@ -473,11 +463,9 @@
   text-align: right;
   align-self: flex-end;
 }
-
 .content-fragment-wrapper .content-fragment .banner-content .banner-detail.text-left .cftitle::after {
   margin-left: 0;
 }
-
 .content-fragment-wrapper .content-fragment .banner-content .banner-detail.text-right .cftitle::after {
   margin-right: 0;
 }
