@@ -10,10 +10,16 @@
 
 .columns-nav.block {
   position: sticky;
-  top: 0;
+  top: 64px; /* stick below the sticky site header (main nav bar) */
   z-index: 5;
   background-color: #fff;
   border-bottom: 1px solid rgb(221 221 221);
+}
+
+@media (width >= 900px) {
+  .columns-nav.block {
+    top: 105px; /* desktop header is taller (utility bar + main nav) */
+  }
 }
 
 /* row: label on the left, links pushed to the right */

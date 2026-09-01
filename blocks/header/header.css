@@ -250,10 +250,30 @@ header nav[data-menu-open="true"] .nav-hamburger span:nth-child(3) {
   }
 
   header nav .nav-sections > ul > li > a {
+    position: relative;
     padding: 20px 0;
     font-size: 15px;
     white-space: nowrap;
   }
+
+  /* White hover underline (source behavior) — grows under the label */
+  header nav .nav-sections > ul > li > a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 14px;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.25s ease;
+  }
+
+  /* stylelint-disable no-descending-specificity */
+  header nav .nav-drop[aria-expanded="true"] > a::after,
+  header nav .nav-sections > ul > li > a:hover::after {
+    width: 100%;
+  }
+  /* stylelint-enable no-descending-specificity */
 
   /* Desktop dropdown panel: absolute, hidden by default, opens below on hover */
   header nav .nav-dropdown {

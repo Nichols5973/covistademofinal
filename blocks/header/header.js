@@ -89,25 +89,14 @@ export default async function decorate(block) {
           if (topLink) li.append(topLink);
           li.append(panel);
 
-          // Desktop hover open/close
-          li.addEventListener('mouseenter', () => {
-            if (isDesktop.matches) {
-              closeAllDropdowns(nav);
-              li.setAttribute('aria-expanded', 'true');
-            }
-          });
-          li.addEventListener('mouseleave', () => {
-            if (isDesktop.matches) li.setAttribute('aria-expanded', 'false');
-          });
-          // Click toggles (mobile, or top-level with no direct destination)
+          // Desktop: hover shows only the white underline (styled in CSS);
+          // the panel opens on CLICK (matching the source). Mobile: click toggles.
           if (topLink) {
             topLink.addEventListener('click', (e) => {
-              if (topLink.getAttribute('href') === '#' || !isDesktop.matches) {
-                e.preventDefault();
-                const open = li.getAttribute('aria-expanded') === 'true';
-                closeAllDropdowns(nav);
-                li.setAttribute('aria-expanded', open ? 'false' : 'true');
-              }
+              e.preventDefault();
+              const open = li.getAttribute('aria-expanded') === 'true';
+              closeAllDropdowns(nav);
+              li.setAttribute('aria-expanded', open ? 'false' : 'true');
             });
           }
         }
