@@ -312,13 +312,20 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-/* On covista.com/our-story the mid-page sections (approach, quote, features)
-   are white, not cream — keep the section spacing but no cream fill. */
-main .section.light,
-main .section.soft-pink {
+/* On covista.com/our-story the mid-page sections (approach, features) are
+   white, not cream — keep the section spacing but no cream fill. */
+main .section.light {
   background-color: var(--background-color);
   margin: 0;
   padding: 40px 0;
+}
+
+/* Quote section: full-bleed cream band behind an inset content row
+   (source: p-universal-bg-color--secondary, 60px/50px vertical padding). */
+main .section.soft-pink {
+  background-color: var(--brand-cream);
+  margin: 0;
+  padding: 60px 0 50px;
 }
 
 main .section.dark-green {
