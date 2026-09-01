@@ -97,7 +97,21 @@ export default async function decorate(block) {
       return; // Exit early if no valid data
     }
     // Set up block attributes
+    const itemId = `urn:aemconnection:${contentPath}/jcr:content/data/${variationname}`;
     const imgUrl = isAuthor ? cfReq.bannerimage?._authorUrl : cfReq.bannerimage?._publishUrl;
+
+    // In the author/UE canvas, instrument the fragment as an editable container so
+    // its fields can be edited inline. Use type "container" (not "reference") to
+    // avoid the editor re-resolving and painting the fragment a second time.
+    const aueContainer = isAuthor
+      ? `data-aue-resource="${itemId}" data-aue-label="${variationname || 'Content Fragment'}" data-aue-type="container"`
+      : '';
+    const aueTitle = isAuthor ? 'data-aue-prop="title" data-aue-label="Title" data-aue-type="text"' : '';
+    const aueSubtitle = isAuthor ? 'data-aue-prop="subtitle" data-aue-label="SubTitle" data-aue-type="text"' : '';
+    const aueDescription = isAuthor ? 'data-aue-prop="description" data-aue-label="Description" data-aue-type="richtext"' : '';
+    const aueImage = isAuthor ? 'data-aue-prop="bannerimage" data-aue-label="Main Image" data-aue-type="media"' : '';
+    const aueCtaLabel = isAuthor ? 'data-aue-prop="ctalabel" data-aue-label="Button Label" data-aue-type="text"' : '';
+    const aueCtaUrl = isAuthor ? 'data-aue-prop="ctaurl" data-aue-label="Button Link/URL" data-aue-type="reference" data-aue-filter="page"' : '';
 
     // Determine the layout style
     const isImageLeft = displayStyle === 'image-left';
@@ -162,15 +176,15 @@ export default async function decorate(block) {
       }
     }
 
-    block.innerHTML = `<div class='banner-content block ${displayStyle}' style="${bannerContentStyle}">
-          <div class='banner-detail ${alignment}' style="${bannerDetailStyle}">
-                <h2 class='cftitle'>${cfReq?.title}</h2>
-                <h3 class='cfsubtitle'>${cfReq?.subtitle}</h3>
+    block.innerHTML = `<div class='banner-content block ${displayStyle}' ${aueContainer} style="${bannerContentStyle}">
+          <div class='banner-detail ${alignment}' ${aueImage} style="${bannerDetailStyle}">
+                <h2 ${aueTitle} class='cftitle'>${cfReq?.title}</h2>
+                <h3 ${aueSubtitle} class='cfsubtitle'>${cfReq?.subtitle}</h3>
 
-                <div class='cfdescription'><p>${cfReq?.description?.plaintext || ''}</p></div>
+                <div ${aueDescription} class='cfdescription'><p>${cfReq?.description?.plaintext || ''}</p></div>
                  <p class="button-container ${ctaStyle}">
-                  <a href="${ctaHref}" target="_blank" rel="noopener" class='button'>
-                    <span>
+                  <a href="${ctaHref}" ${aueCtaUrl} target="_blank" rel="noopener" class='button'>
+                    <span ${aueCtaLabel}>
                       ${cfReq?.ctalabel}
                     </span>
                   </a>
