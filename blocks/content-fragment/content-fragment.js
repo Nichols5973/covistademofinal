@@ -117,8 +117,10 @@ export default async function decorate(block) {
   let item;
   try {
     const resp = await fetch(url, { headers: { 'Content-Type': 'application/json' } });
+    const json = await resp.json().catch(() => null);
+    // eslint-disable-next-line no-console
+    console.info('content-fragment: response', { status: resp.status, json });
     if (!resp.ok) throw new Error(`GraphQL ${resp.status}`);
-    const json = await resp.json();
     item = json?.data?.[CONFIG.RESPONSE_ROOT]?.item;
   } catch (e) {
     // eslint-disable-next-line no-console
@@ -129,7 +131,7 @@ export default async function decorate(block) {
   }
   if (!item) {
     // eslint-disable-next-line no-console
-    console.warn('content-fragment: query returned no item (check model/query field names)', { url });
+    console.warn('content-fragment: query returned no item — the GraphQL response above shows why (GraphQL "errors" array = model not on this endpoint / wrong query; empty data = fragment not published or path not matched).', { contentPath, variationName });
     return;
   }
 
