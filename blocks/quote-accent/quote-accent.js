@@ -1,4 +1,18 @@
+// AEM crosswalk renders the image field as an <a href="image-url">alt</a> (a
+// bare link) when the source is an external URL. Convert any image-URL anchor
+// to an <img> so the portrait renders. Harmless when a <picture>/<img> exists.
+const IMG_URL = /\.(?:png|jpe?g|webp|gif|svg|avif)(?:[?#]|$)/i;
+
 export default async function decorate(block) {
+  block.querySelectorAll('a[href]').forEach((a) => {
+    const href = a.getAttribute('href') || '';
+    if (!IMG_URL.test(href) || a.closest('picture') || a.querySelector('img')) return;
+    const img = document.createElement('img');
+    img.src = href;
+    img.alt = a.textContent.trim();
+    a.replaceWith(img);
+  });
+
   const rows = [...block.children].map((c) => c.firstElementChild);
   // Detect an optional leading portrait image row.
   let imageRow;
