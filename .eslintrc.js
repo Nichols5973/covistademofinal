@@ -18,5 +18,7 @@ module.exports = {
     'import/extensions': ['error', { js: 'always' }], // require js file extensions in imports
     'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
+    // contentfragment block reads 5 positional cells (style, alignment, cta style, etc.)
+    'xwalk/max-cells': ['error', { contentfragment: 5 }],
   },
 };

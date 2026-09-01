@@ -42,7 +42,7 @@
           "name": "displaystyle",
           "label": "Style",
           "options": [
-            { "name": "Default (overlay)", "value": "" },
+            { "name": "default", "value": "" },
             { "name": "Image Left", "value": "image-left" },
             { "name": "Image Right", "value": "image-right" },
             { "name": "Image Top", "value": "image-top" },
@@ -55,8 +55,19 @@
           "label": "Alignment",
           "options": [
             { "name": "Text Left", "value": "text-left" },
-            { "name": "Text Center", "value": "text-center" },
-            { "name": "Text Right", "value": "text-right" }
+            { "name": "Text Right", "value": "text-right" },
+            { "name": "Text Center", "value": "text-center" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "ctastyle",
+          "label": "CTA Style",
+          "options": [
+            { "name": "Link", "value": "cta-link" },
+            { "name": "Primary Button", "value": "cta-button" },
+            { "name": "Secondary Button", "value": "cta-button-secondary" },
+            { "name": "Dark Button", "value": "cta-button-dark" }
           ]
         }
       ]

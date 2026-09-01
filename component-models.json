@@ -358,7 +358,7 @@
         "label": "Style",
         "options": [
           {
-            "name": "Default (overlay)",
+            "name": "default",
             "value": ""
           },
           {
@@ -389,12 +389,35 @@
             "value": "text-left"
           },
           {
-            "name": "Text Center",
-            "value": "text-center"
-          },
-          {
             "name": "Text Right",
             "value": "text-right"
+          },
+          {
+            "name": "Text Center",
+            "value": "text-center"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "ctastyle",
+        "label": "CTA Style",
+        "options": [
+          {
+            "name": "Link",
+            "value": "cta-link"
+          },
+          {
+            "name": "Primary Button",
+            "value": "cta-button"
+          },
+          {
+            "name": "Secondary Button",
+            "value": "cta-button-secondary"
+          },
+          {
+            "name": "Dark Button",
+            "value": "cta-button-dark"
           }
         ]
       }

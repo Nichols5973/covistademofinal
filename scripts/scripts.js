@@ -176,3 +176,10 @@ async function loadPage() {
 }
 
 loadPage();
+
+export function isAuthorEnvironment() {
+  if (window?.location?.origin?.includes('author')) {
+    return true;
+  }
+  return false;
+}

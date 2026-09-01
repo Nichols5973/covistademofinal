@@ -26,7 +26,6 @@
   width: 100%;
   height: 100%;
   min-height: 400px;
-  display: block;
   background-size: cover;
   background-position: center;
   margin: 0;
@@ -58,12 +57,12 @@
   line-height: 50px;
   font-family: var(--black-font-family);
 }
+
 .content-fragment-wrapper .content-fragment .banner-content .banner-detail .cftitle::after {
   background-color: var(--main-accent-color);
   content: "";
   display: block;
   height: 5px;
-  margin: auto;
   transition: width .4s ease-in-out;
   width: 128px;
   margin: 10px auto;
@@ -98,8 +97,9 @@
   text-align: left;
   cursor: pointer;
 }
+
 .content-fragment-wrapper .content-fragment .banner-content .banner-detail a::after {
-  font-family: 'Font Awesome 5 Solid';
+  font-family: 'Font Awesome 5 Solid', sans-serif;
   content: "\f105";
   color: var(--text-light);
   font-size: 16px;
@@ -266,6 +266,7 @@
 .content-fragment-wrapper .content-fragment .banner-content.image-bottom .banner-detail .cfdescription {
   color: var(--text-color);
   width: 100%;
+
   /* text-align: left; */
 }
 
@@ -273,7 +274,8 @@
 .content-fragment-wrapper .content-fragment .banner-content.image-right .banner-detail a,
 .content-fragment-wrapper .content-fragment .banner-content.image-top .banner-detail a,
 .content-fragment-wrapper .content-fragment .banner-content.image-bottom .banner-detail a {
-  /* text-align: left; */ 
+  /* text-align: left; */
+
   /* align-self: flex-start; */
   color: var(--text-color);
 }
@@ -299,10 +301,10 @@
 
 /* Responsive Styles */
 @media (width < 1024px) {
-
   .content-fragment-container .content-fragment-wrapper {
     padding: 0;
   }
+
   .content-fragment-container .content-fragment-wrapper .content-fragment {
     display: block;
   }
@@ -310,6 +312,7 @@
   .content-fragment-container .content-fragment-wrapper .content-fragment .banner-content {
     display: flex;
   }
+
   .content-fragment-container .content-fragment-wrapper .content-fragment .banner-content .banner-detail {
     padding: 10px;
   }
@@ -318,10 +321,12 @@
     font-size: 25px;
     font-family: var(--heading-font-family);
   }
+
   .content-fragment-container .content-fragment-wrapper .content-fragment .banner-content .banner-detail .cfsubtitle {
     font-size: 20px;
     font-family: var(--heading-font-family);
   }
+
   .content-fragment-container .content-fragment-wrapper .content-fragment .banner-content .banner-detail .cfdescription {
     width: 90%;
   }
@@ -329,11 +334,10 @@
 
 
 @media (width < 768px) {
-
   .content-fragment-container .content-fragment-wrapper {
     padding: 0;
   }
-  
+
 }
 
 /* Responsive styles for all image layouts */
@@ -345,25 +349,22 @@
     flex-direction: column;
     background-position: center top;
   }
-  
+
   .content-fragment-wrapper .content-fragment .banner-content.image-left::before,
   .content-fragment-wrapper .content-fragment .banner-content.image-right::before {
     width: 100%;
     height: 300px;
     position: relative;
   }
-  
+
   .content-fragment-wrapper .content-fragment .banner-content.image-left .banner-detail,
   .content-fragment-wrapper .content-fragment .banner-content.image-right .banner-detail {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
     padding: 40px 20px;
     text-align: center;
     align-items: center;
   }
-  
+
   /* Keep original margins for top/bottom layouts on tablet */
   .content-fragment-wrapper .content-fragment .banner-content.image-top .banner-detail,
   .content-fragment-wrapper .content-fragment .banner-content.image-bottom .banner-detail {
@@ -371,14 +372,14 @@
     text-align: center;
     align-items: center;
   }
-  
+
   .content-fragment-wrapper .content-fragment .banner-content.image-left .banner-detail .cfdescription,
   .content-fragment-wrapper .content-fragment .banner-content.image-right .banner-detail .cfdescription,
   .content-fragment-wrapper .content-fragment .banner-content.image-top .banner-detail .cfdescription,
   .content-fragment-wrapper .content-fragment .banner-content.image-bottom .banner-detail .cfdescription {
     text-align: center;
   }
-  
+
   .content-fragment-wrapper .content-fragment .banner-content.image-left .banner-detail a,
   .content-fragment-wrapper .content-fragment .banner-content.image-right .banner-detail a,
   .content-fragment-wrapper .content-fragment .banner-content.image-top .banner-detail a,
@@ -393,14 +394,14 @@
   .content-fragment-wrapper .content-fragment .banner-content.image-right::before {
     height: 200px;
   }
-  
+
   .content-fragment-wrapper .content-fragment .banner-content.image-left .banner-detail,
   .content-fragment-wrapper .content-fragment .banner-content.image-right .banner-detail,
   .content-fragment-wrapper .content-fragment .banner-content.image-top .banner-detail,
   .content-fragment-wrapper .content-fragment .banner-content.image-bottom .banner-detail {
     padding: 30px 15px;
   }
-  
+
   /* Fix mobile image visibility for top/bottom layouts */
   .content-fragment-wrapper .content-fragment .banner-content.image-top {
     background-size: contain !important;
@@ -408,19 +409,19 @@
     background-repeat: no-repeat !important;
     min-height: 400px !important;
   }
-  
+
   .content-fragment-wrapper .content-fragment .banner-content.image-bottom {
     background-size: contain !important;
     background-position: center bottom !important;
     background-repeat: no-repeat !important;
     min-height: 400px !important;
   }
-  
+
   /* Adjust margins for mobile to ensure image visibility */
   .content-fragment-wrapper .content-fragment .banner-content.image-top .banner-detail {
     margin-top: 200px !important;
   }
-  
+
   .content-fragment-wrapper .content-fragment .banner-content.image-bottom .banner-detail {
     margin-bottom: 200px !important;
   }
@@ -441,7 +442,9 @@
   text-align: center;
   align-items: center;
 }
-/*for top and bottom layouts*/
+
+/* for top and bottom layouts */
+
 /* Override text alignment for top/bottom layouts */
 .content-fragment-wrapper .content-fragment .banner-content.image-top .banner-detail.text-left .cfdescription,
 .content-fragment-wrapper .content-fragment .banner-content.image-bottom .banner-detail.text-left .cfdescription {
@@ -453,6 +456,7 @@
   text-align: left;
   align-self: flex-start;
 }
+
 .content-fragment-wrapper .content-fragment .banner-content.image-top .banner-detail.text-right .cfdescription,
 .content-fragment-wrapper .content-fragment .banner-content.image-bottom .banner-detail.text-right .cfdescription {
   text-align: right;
@@ -463,9 +467,11 @@
   text-align: right;
   align-self: flex-end;
 }
+
 .content-fragment-wrapper .content-fragment .banner-content .banner-detail.text-left .cftitle::after {
   margin-left: 0;
 }
+
 .content-fragment-wrapper .content-fragment .banner-content .banner-detail.text-right .cftitle::after {
   margin-right: 0;
 }
