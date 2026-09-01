@@ -306,16 +306,17 @@ main > .section:first-of-type {
 }
 
 /* section metadata */
-main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
 }
 
-/* brand section variants — from covista.com/our-story */
+/* On covista.com/our-story the mid-page sections (approach, quote, features)
+   are white, not cream — keep the section spacing but no cream fill. */
+main .section.light,
 main .section.soft-pink {
-  background-color: var(--brand-cream);
+  background-color: var(--background-color);
   margin: 0;
   padding: 40px 0;
 }
