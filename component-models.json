@@ -380,7 +380,7 @@
     "id": "hero-overlay",
     "fields": [
       {
-        "component": "reference",
+        "component": "image",
         "valueType": "string",
         "name": "image",
         "label": "Image",
@@ -447,7 +447,7 @@
     "id": "quote-accent",
     "fields": [
       {
-        "component": "reference",
+        "component": "image",
         "valueType": "string",
         "name": "image",
         "value": "",
