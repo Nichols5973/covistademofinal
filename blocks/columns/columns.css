@@ -31,3 +31,19 @@
     order: unset;
   }
 }
+
+/* In-page sub-navigation authored as a columns block (e.g. our-story: label +
+   anchor links). The links cell holds only in-page (#) anchors; space them
+   evenly and align right to match the source site instead of squishing them
+   together. Scoped via :has() so no other columns block is affected. */
+.columns.block > div > div:last-child:has(> p.button-container > a[href^="#"]) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 32px;
+}
+
+.columns.block > div > div:last-child:has(> p.button-container > a[href^="#"]) .button-container {
+  margin: 0;
+}
