@@ -14,7 +14,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  * DATA MODEL (AEM Content Fragment Model "CTA"):
  *   title        (single-line text)
  *   subtitle     (single-line text)
- *   description   (multi-line / rich text)
+ *   description  (multi-line / rich text)
  *   bannerimage  (content reference — image)
  *   ctalabel     (single-line text)
  *   ctaurl       (content reference — page)
@@ -41,6 +41,13 @@ const CONFIG = {
   GRAPHQL_QUERY: '/graphql/execute.json/ref-demo-eds/CTAByPath',
   // GraphQL response root (matches the query name above).
   RESPONSE_ROOT: 'ctaByPath',
+  // AEM publish origin that serves the persisted query on the DELIVERY tier
+  // (aem.live / aem.page). The Edge Delivery host does NOT serve
+  // /graphql/execute.json, so on delivery we must call AEM publish directly.
+  // CORS on publish already allows the aem.live / aem.page origins.
+  // Override per-site (e.g. when cloning this block to another demo) by
+  // publishing a `publishurl` metadata value on the page — see getServiceHost.
+  PUBLISH_HOST: 'https://publish-p87302-e1492027.adobeaemcloud.com',
 };
 
 // --- Environment helpers (inlined so the block has no extra script deps) ---
@@ -52,16 +59,25 @@ function isAuthorEnvironment() {
     || !!document.querySelector('meta[name="urn:adobe:aue:system:aemconnection"]');
 }
 
-/** Author host, from page metadata (set by AEM) or the current origin. */
-function getAuthorHost() {
-  const meta = getMetadata('authorurl') || getMetadata('hostname');
-  if (meta) return meta.replace(/\/$/, '');
-  return `${window.location.protocol}//${window.location.host}`;
-}
-
-/** Publish host = author host with the "author" segment swapped to "publish". */
-function getPublishHost() {
-  return getAuthorHost().replace('author', 'publish').replace(/\/$/, '');
+/**
+ * Resolve the host that serves the AEM GraphQL persisted query.
+ *
+ * - Author / Universal Editor canvas: the same-origin author host, taken from
+ *   the `authorurl`/`hostname` page meta if present, else the current origin.
+ *   (Same-origin, so the session cookie authenticates the request.)
+ * - Delivery (aem.live / aem.page): the AEM PUBLISH origin — from a `publishurl`
+ *   page meta if present, otherwise CONFIG.PUBLISH_HOST. We deliberately do NOT
+ *   fall back to the EDS origin (window.location), because the Edge Delivery
+ *   host returns 404 for /graphql/execute.json — that fallback was the bug.
+ */
+function getServiceHost(isAuthor) {
+  if (isAuthor) {
+    const meta = getMetadata('authorurl') || getMetadata('hostname');
+    const host = meta || `${window.location.protocol}//${window.location.host}`;
+    return host.replace(/\/$/, '');
+  }
+  const meta = getMetadata('publishurl');
+  return (meta || CONFIG.PUBLISH_HOST).replace(/\/$/, '');
 }
 
 /** Find the content-fragment path anywhere in the block (href or text). */
@@ -102,16 +118,14 @@ export default async function decorate(block) {
   block.innerHTML = '';
 
   const isAuthor = isAuthorEnvironment();
-  const authorHost = getAuthorHost();
-  const publishHost = getPublishHost();
-  const host = isAuthor ? authorHost : publishHost;
+  const host = getServiceHost(isAuthor);
 
   const url = `${host}${CONFIG.GRAPHQL_QUERY};path=${encodeURIComponent(contentPath)}`
     + `;variation=${encodeURIComponent(variationName)};ts=${Date.now()}`;
 
   // eslint-disable-next-line no-console
   console.info('content-fragment: fetching', {
-    contentPath, variationName, displayStyle, alignment, isAuthor, url,
+    contentPath, variationName, displayStyle, alignment, isAuthor, host, url,
   });
 
   let item;
@@ -153,7 +167,7 @@ export default async function decorate(block) {
       ctaHref = /^https?:\/\//i.test(cta) ? cta : `${host}${cta}`;
     } else if (typeof cta === 'object') {
       ctaHref = isAuthor
-        ? (cta._authorUrl || (cta._path ? `${authorHost}${cta._path}` : '#'))
+        ? (cta._authorUrl || (cta._path ? `${host}${cta._path}` : '#'))
         : (cta._publishUrl || cta._path || '#');
     }
   }
