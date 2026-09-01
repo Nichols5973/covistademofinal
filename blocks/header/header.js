@@ -76,16 +76,27 @@ export default async function decorate(block) {
   mainBar.className = 'nav-main';
 
   // Brand / logo. Resolve the logo image from the code origin (relative to this
-  // module) so it renders in AEM regardless of DAM asset availability.
+  // module) so it renders in AEM regardless of DAM asset availability. The
+  // source fragment may render the logo as a bare <img> (AEM/UE) or wrapped in
+  // an <a> (local), so handle both: rewrite the img src, and ensure it links home.
   const brand = document.createElement('div');
   brand.className = 'nav-brand';
-  if (brandSection) {
-    const logoLink = brandSection.querySelector('a');
-    if (logoLink) {
-      const img = logoLink.querySelector('img');
-      if (img) img.src = new URL('../../icons/covista-logo.svg', import.meta.url).href;
-      brand.append(logoLink);
+  // Find the brand logo image robustly: the first <img> in the fragment that is
+  // NOT inside a nav list (dropdown logo-marks live inside <ul>). Falls back to
+  // the expected brand section. Works whether the source rendered it as a bare
+  // <img> (AEM/UE) or wrapped in an <a> (local fragment).
+  let brandImg = [...frag.querySelectorAll('img')].find((im) => !im.closest('ul'));
+  if (!brandImg && brandSection) brandImg = brandSection.querySelector('img');
+  if (brandImg) {
+    brandImg.src = new URL('../../icons/covista-logo.svg', import.meta.url).href;
+    brandImg.setAttribute('alt', brandImg.getAttribute('alt') || 'Covista');
+    let logoLink = brandImg.closest('a');
+    if (!logoLink) {
+      logoLink = document.createElement('a');
+      logoLink.href = '/';
+      logoLink.append(brandImg);
     }
+    brand.append(logoLink);
   }
   mainBar.append(brand);
 
@@ -102,10 +113,15 @@ export default async function decorate(block) {
         if (subList) {
           li.classList.add('nav-drop');
           li.setAttribute('aria-expanded', 'false');
-          // Wrap the panel (logo-mark + sub-links) in a dropdown container
+          // Wrap the panel (logo-mark + sub-links) in a dropdown container.
+          // Resolve the logo-mark image from the code origin so it renders in AEM.
           const panel = document.createElement('div');
           panel.className = 'nav-dropdown';
-          if (logoMark) panel.append(logoMark);
+          if (logoMark) {
+            const markImg = logoMark.querySelector('img');
+            if (markImg) markImg.src = new URL('../../icons/nav-logomark.webp', import.meta.url).href;
+            panel.append(logoMark);
+          }
           panel.append(subList);
           // Keep the top-level label, then the panel
           li.textContent = '';
