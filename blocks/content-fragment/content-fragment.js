@@ -19,7 +19,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  *   ctalabel     (single-line text)
  *   ctaurl       (content reference — page)
  *
- * GRAPHQL persisted query (endpoint: /graphql/execute.json/covistademo1/CTAByPath):
+ * GRAPHQL persisted query (endpoint: /graphql/execute.json/ref-demo-eds/CTAByPath):
  *   query CTAByPath($path: String!, $variation: String!) {
  *     ctaByPath(_path: $path, variation: $variation) {
  *       item {
@@ -35,9 +35,10 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 const CONFIG = {
   // AEM GraphQL persisted query for the CTA content-fragment model.
-  // NOTE: the "covistademo1" segment is the GraphQL endpoint (config) name —
-  // change it if your persisted query lives under a different endpoint.
-  GRAPHQL_QUERY: '/graphql/execute.json/covistademo1/CTAByPath',
+  // "ref-demo-eds" is the GraphQL endpoint (config) name where the CTA model +
+  // CTAByPath persisted query live. The query filters by the fragment's _path,
+  // so any CTA-model fragment (regardless of DAM folder) resolves through it.
+  GRAPHQL_QUERY: '/graphql/execute.json/ref-demo-eds/CTAByPath',
   // GraphQL response root (matches the query name above).
   RESPONSE_ROOT: 'ctaByPath',
 };

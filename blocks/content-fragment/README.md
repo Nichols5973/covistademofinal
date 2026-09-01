@@ -20,7 +20,7 @@ This block is wired to the **CTA** content-fragment model, whose fields are:
 
 ## 2. Create the GraphQL persisted query (AEM author, one-time)
 
-The block fetches via `/graphql/execute.json/covistademo1/CTAByPath`.
+The block fetches via `/graphql/execute.json/ref-demo-eds/CTAByPath`.
 Create it with AEM's GraphQL Query editor (or the persisted-query API), name
 **`CTAByPath`**, with this query, then **Publish** it:
 
@@ -39,15 +39,16 @@ query CTAByPath($path: String!, $variation: String! = "master") {
 }
 ```
 
-> The `covistademo1` segment is the GraphQL **endpoint** name. If your endpoint
-> is named differently, update `CONFIG.GRAPHQL_QUERY` at the top of
-> `content-fragment.js`. If the model/query/field names differ, update `CONFIG`
-> + the `item.*` reads to match.
+> The `ref-demo-eds` segment is the GraphQL **endpoint** name (the CTA model +
+> CTAByPath query live there). If your endpoint is named differently, update
+> `CONFIG.GRAPHQL_QUERY` at the top of `content-fragment.js`. If the
+> model/query/field names differ, update `CONFIG` + the `item.*` reads to match.
 
 ## 3. Author a fragment
 
-AEM → **Content Fragments** → Create → model **Covista Banner** → e.g.
-`/content/dam/covistademo1/banners/join-us`. Fill in title/subtitle/description,
+AEM → **Content Fragments** → Create → model **CTA** → e.g.
+`/content/dam/covistademo1/en/fragments/promotions/covistapromotion`. Fill in
+title/subtitle/description,
 pick a banner image, set CTA label + URL. Add **Variations** if you want
 alternates (the dialog can select a variation per placement). **Publish** it.
 
