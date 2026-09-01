@@ -15,4 +15,33 @@ export default function decorate(block) {
       }
     });
   });
+
+  // The right column is a flat list of h3 + paragraph(s) per feature. Group each
+  // heading with its following content into a "feature" row so the (CSS) icon
+  // sits in a left column and the heading + copy sit flush to its right,
+  // matching the source layout.
+  const row = block.firstElementChild;
+  const textCol = row && row.children[1];
+  if (textCol && textCol.querySelector('h3')) {
+    const features = [];
+    let current = null;
+    [...textCol.children].forEach((node) => {
+      if (node.tagName === 'H3') {
+        current = document.createElement('div');
+        current.className = 'columns-approach-feature';
+        const body = document.createElement('div');
+        body.className = 'columns-approach-feature-body';
+        body.append(node);
+        current.append(body);
+        features.push(current);
+      } else if (current) {
+        current.querySelector('.columns-approach-feature-body').append(node);
+      }
+    });
+    if (features.length) {
+      textCol.textContent = '';
+      textCol.classList.add('columns-approach-features');
+      features.forEach((f) => textCol.append(f));
+    }
+  }
 }

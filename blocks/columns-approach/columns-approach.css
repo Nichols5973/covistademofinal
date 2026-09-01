@@ -44,41 +44,57 @@
   margin: 40px 0 0;
 }
 
-/* Feature icons (source: proprietary cv-icomoon glyphs) — captured from the
-   source as PNGs and rendered above each right-column heading. */
-.columns-approach > div > div:last-child > h3::before {
+/* Feature rows: icon column (left) + heading/copy column (right), flush,
+   matching the source layout. Icons (source: proprietary cv-icomoon glyphs)
+   are captured from the source as PNGs. */
+.columns-approach-feature {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.columns-approach-feature + .columns-approach-feature {
+  margin-top: 40px;
+}
+
+.columns-approach-feature::before {
   content: '';
-  display: block;
+  flex: 0 0 84px;
   width: 84px;
   height: 84px;
-  margin-bottom: 16px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
-.columns-approach > div > div:last-child > h3:nth-of-type(1)::before {
+.columns-approach-feature:nth-of-type(1)::before {
   background-image: url('/icons/icon-expanding-access.png');
 }
 
-.columns-approach > div > div:last-child > h3:nth-of-type(2)::before {
+.columns-approach-feature:nth-of-type(2)::before {
   background-image: url('/icons/icon-preparing-professionals.png');
 }
 
-.columns-approach > div > div:last-child > h3:nth-of-type(3)::before {
+.columns-approach-feature:nth-of-type(3)::before {
   background-image: url('/icons/icon-connecting-students.png');
 }
 
-.columns-approach > div > div:last-child > h3:nth-of-type(4)::before {
+.columns-approach-feature:nth-of-type(4)::before {
   background-image: url('/icons/icon-serving-communities.png');
 }
 
-.columns-approach > div > div:last-child > h3:nth-of-type(5)::before {
+.columns-approach-feature:nth-of-type(5)::before {
   background-image: url('/icons/icon-powering-purpose.png');
 }
 
-/* First feature heading in the right column needs no extra top gap */
-.columns-approach > div > div:last-child > h3:first-child {
+.columns-approach-feature-body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Headings inside feature rows sit flush to the icon — no extra top margin */
+.columns-approach-feature-body h3 {
   margin-top: 0;
 }
 
