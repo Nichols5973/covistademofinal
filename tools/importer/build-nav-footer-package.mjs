@@ -20,7 +20,7 @@ const navMd = `[Employer Partners](/employer-partners)
 
 ---
 
-![Covista](/content/dam/covistademo1/covista-logo.svg)
+![Covista](/icons/covista-logo.svg)
 
 ---
 
@@ -48,13 +48,13 @@ const navMd = `[Employer Partners](/employer-partners)
   - [Media Resources](/news-insights/media-resources)
 `;
 
-const footerMd = `![Covista](/content/dam/covistademo1/footer-logo.png)
+const footerMd = `![Covista](/icons/footer-logo.png)
 
 233 S. Wacker Drive, Suite 800
 
 Chicago, IL, 60606
 
-![Covista logo mark](/content/dam/covistademo1/footer-logo-mark.svg)
+![Covista logo mark](/icons/footer-logo-mark.svg)
 
 ---
 
