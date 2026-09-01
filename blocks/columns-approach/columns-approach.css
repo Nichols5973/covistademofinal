@@ -58,34 +58,14 @@
   margin-top: 40px;
 }
 
-.columns-approach-feature::before {
-  content: '';
+/* Feature icon is injected as a real <img> by columns-approach.js (served from
+   the code origin via import.meta.url, mirroring the header/footer logo fix).
+   Scoped with .columns-approach to out-specify the generic `img { width:100% }` above. */
+.columns-approach img.columns-approach-feature-icon {
   flex: 0 0 84px;
   width: 84px;
   height: 84px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.columns-approach-feature:nth-of-type(1)::before {
-  background-image: url('../../icons/icon-expanding-access.png');
-}
-
-.columns-approach-feature:nth-of-type(2)::before {
-  background-image: url('../../icons/icon-preparing-professionals.png');
-}
-
-.columns-approach-feature:nth-of-type(3)::before {
-  background-image: url('../../icons/icon-connecting-students.png');
-}
-
-.columns-approach-feature:nth-of-type(4)::before {
-  background-image: url('../../icons/icon-serving-communities.png');
-}
-
-.columns-approach-feature:nth-of-type(5)::before {
-  background-image: url('../../icons/icon-powering-purpose.png');
+  object-fit: contain;
 }
 
 .columns-approach-feature-body {

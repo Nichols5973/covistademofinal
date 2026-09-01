@@ -1,3 +1,13 @@
+// Feature icons in source order. Served from the code origin (relative to this
+// module) so they render in AEM regardless of DAM/CSS path resolution.
+const FEATURE_ICONS = [
+  'icon-expanding-access.png',
+  'icon-preparing-professionals.png',
+  'icon-connecting-students.png',
+  'icon-serving-communities.png',
+  'icon-powering-purpose.png',
+];
+
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-approach-${cols.length}-cols`);
@@ -29,6 +39,16 @@ export default function decorate(block) {
       if (node.tagName === 'H3') {
         current = document.createElement('div');
         current.className = 'columns-approach-feature';
+        // Icon as a real <img> from the code origin (mirrors the logo fix).
+        const iconName = FEATURE_ICONS[features.length];
+        if (iconName) {
+          const icon = document.createElement('img');
+          icon.className = 'columns-approach-feature-icon';
+          icon.src = new URL(`../../icons/${iconName}`, import.meta.url).href;
+          icon.alt = '';
+          icon.setAttribute('aria-hidden', 'true');
+          current.append(icon);
+        }
         const body = document.createElement('div');
         body.className = 'columns-approach-feature-body';
         body.append(node);
