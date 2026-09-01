@@ -11,7 +11,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  * banner: image + title + subtitle + description + CTA. The SAME fragment can be
  * placed on any number of pages; edit it once and every placement updates.
  *
- * DATA MODEL (AEM Content Fragment Model "Covista Banner", id: covista-banner):
+ * DATA MODEL (AEM Content Fragment Model "CTA"):
  *   title        (single-line text)
  *   subtitle     (single-line text)
  *   description   (multi-line / rich text)
@@ -19,9 +19,9 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  *   ctalabel     (single-line text)
  *   ctaurl       (content reference — page)
  *
- * GRAPHQL persisted query (endpoint: /graphql/execute.json/covistademo1/BannerByPath):
- *   query BannerByPath($path: String!, $variation: String!) {
- *     bannerByPath(_path: $path, variation: $variation) {
+ * GRAPHQL persisted query (endpoint: /graphql/execute.json/covistademo1/CTAByPath):
+ *   query CTAByPath($path: String!, $variation: String!) {
+ *     ctaByPath(_path: $path, variation: $variation) {
  *       item {
  *         title subtitle
  *         description { plaintext html }
@@ -34,10 +34,12 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  */
 
 const CONFIG = {
-  // AEM GraphQL persisted query for the Covista banner CF model.
-  GRAPHQL_QUERY: '/graphql/execute.json/covistademo1/BannerByPath',
+  // AEM GraphQL persisted query for the CTA content-fragment model.
+  // NOTE: the "covistademo1" segment is the GraphQL endpoint (config) name —
+  // change it if your persisted query lives under a different endpoint.
+  GRAPHQL_QUERY: '/graphql/execute.json/covistademo1/CTAByPath',
   // GraphQL response root (matches the query name above).
-  RESPONSE_ROOT: 'bannerByPath',
+  RESPONSE_ROOT: 'ctaByPath',
 };
 
 // --- Environment helpers (inlined so the block has no extra script deps) ---

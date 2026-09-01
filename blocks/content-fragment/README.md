@@ -5,11 +5,9 @@ description + CTA). Author picks the fragment in the Universal Editor dialog and
 chooses a **Style** and **Alignment**. The **same fragment can be placed on any
 number of pages** — edit it once, every placement updates.
 
-## 1. Create the Content Fragment Model (AEM author, one-time)
+## 1. Content Fragment Model (AEM author)
 
-AEM → **Tools → General → Content Fragment Models** → your `covistademo1`
-configuration → **Create**. Name it **`Covista Banner`** (id `covista-banner`).
-Add these fields (names must match exactly — the block + GraphQL query rely on them):
+This block is wired to the **CTA** content-fragment model, whose fields are:
 
 | Field label | Property name | Type |
 |-------------|---------------|------|
@@ -20,17 +18,15 @@ Add these fields (names must match exactly — the block + GraphQL query rely on
 | CTA Label | `ctalabel` | Single line text |
 | CTA URL | `ctaurl` | Content Reference (page) |
 
-Enable it, then **Publish** the model.
-
 ## 2. Create the GraphQL persisted query (AEM author, one-time)
 
-The block fetches via `/graphql/execute.json/covistademo1/BannerByPath`.
-Create it with AEM's GraphQL Query editor (or the persisted-query API) against
-the `covistademo1` endpoint, name **`BannerByPath`**, with this query:
+The block fetches via `/graphql/execute.json/covistademo1/CTAByPath`.
+Create it with AEM's GraphQL Query editor (or the persisted-query API), name
+**`CTAByPath`**, with this query, then **Publish** it:
 
 ```graphql
-query BannerByPath($path: String!, $variation: String! = "master") {
-  bannerByPath(_path: $path, variation: $variation) {
+query CTAByPath($path: String!, $variation: String! = "master") {
+  ctaByPath(_path: $path, variation: $variation) {
     item {
       title
       subtitle
@@ -43,10 +39,10 @@ query BannerByPath($path: String!, $variation: String! = "master") {
 }
 ```
 
-**Publish** the persisted query.
-
-> If you name the model/query/fields differently, update `CONFIG` and the
-> `item.*` reads at the top of `content-fragment.js` to match.
+> The `covistademo1` segment is the GraphQL **endpoint** name. If your endpoint
+> is named differently, update `CONFIG.GRAPHQL_QUERY` at the top of
+> `content-fragment.js`. If the model/query/field names differ, update `CONFIG`
+> + the `item.*` reads to match.
 
 ## 3. Author a fragment
 
