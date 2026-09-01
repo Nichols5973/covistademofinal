@@ -97,8 +97,6 @@ export default async function decorate(block) {
       return; // Exit early if no valid data
     }
     // Set up block attributes
-    const itemId = `urn:aemconnection:${contentPath}/jcr:content/data/${variationname}`;
-    block.setAttribute('data-aue-type', 'container');
     const imgUrl = isAuthor ? cfReq.bannerimage?._authorUrl : cfReq.bannerimage?._publishUrl;
 
     // Determine the layout style
@@ -164,15 +162,15 @@ export default async function decorate(block) {
       }
     }
 
-    block.innerHTML = `<div class='banner-content block ${displayStyle}' data-aue-resource=${itemId} data-aue-label=${variationname || 'Elements'} data-aue-type="reference" data-aue-filter="contentfragment" style="${bannerContentStyle}">
-          <div class='banner-detail ${alignment}' style="${bannerDetailStyle}" data-aue-prop="bannerimage" data-aue-label="Main Image" data-aue-type="media" >
-                <h2 data-aue-prop="title" data-aue-label="Title" data-aue-type="text" class='cftitle'>${cfReq?.title}</h2>
-                <h3 data-aue-prop="subtitle" data-aue-label="SubTitle" data-aue-type="text" class='cfsubtitle'>${cfReq?.subtitle}</h3>
+    block.innerHTML = `<div class='banner-content block ${displayStyle}' style="${bannerContentStyle}">
+          <div class='banner-detail ${alignment}' style="${bannerDetailStyle}">
+                <h2 class='cftitle'>${cfReq?.title}</h2>
+                <h3 class='cfsubtitle'>${cfReq?.subtitle}</h3>
 
-                <div data-aue-prop="description" data-aue-label="Description" data-aue-type="richtext" class='cfdescription'><p>${cfReq?.description?.plaintext || ''}</p></div>
+                <div class='cfdescription'><p>${cfReq?.description?.plaintext || ''}</p></div>
                  <p class="button-container ${ctaStyle}">
-                  <a href="${ctaHref}" data-aue-prop="ctaurl" data-aue-label="Button Link/URL" data-aue-type="reference"  target="_blank" rel="noopener" data-aue-filter="page" class='button'>
-                    <span data-aue-prop="ctalabel" data-aue-label="Button Label" data-aue-type="text">
+                  <a href="${ctaHref}" target="_blank" rel="noopener" class='button'>
+                    <span>
                       ${cfReq?.ctalabel}
                     </span>
                   </a>
