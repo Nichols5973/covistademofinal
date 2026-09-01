@@ -75,12 +75,17 @@ export default async function decorate(block) {
   const mainBar = document.createElement('div');
   mainBar.className = 'nav-main';
 
-  // Brand / logo
+  // Brand / logo. Resolve the logo image from the code origin (relative to this
+  // module) so it renders in AEM regardless of DAM asset availability.
   const brand = document.createElement('div');
   brand.className = 'nav-brand';
   if (brandSection) {
     const logoLink = brandSection.querySelector('a');
-    if (logoLink) brand.append(logoLink);
+    if (logoLink) {
+      const img = logoLink.querySelector('img');
+      if (img) img.src = new URL('../../icons/covista-logo.svg', import.meta.url).href;
+      brand.append(logoLink);
+    }
   }
   mainBar.append(brand);
 

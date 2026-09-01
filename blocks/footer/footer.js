@@ -70,6 +70,12 @@ export default async function decorate(block) {
 
   if (brandSection) {
     brandSection.className = 'footer-brand';
+    // Resolve brand images from the code origin (relative to this module) so
+    // they render in AEM regardless of DAM asset availability. First image is
+    // the wordmark logo, second is the logo-mark decoration.
+    const imgs = brandSection.querySelectorAll('img');
+    if (imgs[0]) imgs[0].src = new URL('../../icons/footer-logo.png', import.meta.url).href;
+    if (imgs[1]) imgs[1].src = new URL('../../icons/footer-logo-mark.svg', import.meta.url).href;
     topBand.append(brandSection);
   }
 
