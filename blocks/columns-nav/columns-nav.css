@@ -59,10 +59,11 @@
 
 /* reset EDS button pill styling back to the source's plain text links */
 .columns-nav a.button:any-link {
+  position: relative;
   margin: 0;
   border: none;
   border-radius: 0;
-  padding: 0;
+  padding: 0 0 4px;
   background: none;
   color: var(--link-color);
   font-family: acumin-pro-wide-semi, Helvetica, Arial, sans-serif;
@@ -74,10 +75,28 @@
   white-space: nowrap;
 }
 
+/* Green underline that animates in — full width on the active (in-view) link,
+   partial on hover (source: c-anchor__menu--item--active ::after). */
+.columns-nav a.button:any-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--link-color);
+  transition: width 0.25s ease;
+}
+
 .columns-nav a.button:any-link:hover {
   background: none;
-  color: var(--link-hover-color);
-  text-decoration: underline;
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.columns-nav a.button:any-link:hover::after,
+.columns-nav a.button.columns-nav-link-active::after {
+  width: 100%;
 }
 
 /* source bar carries the `hide-on-mobile` class — hide below the desktop breakpoint */
