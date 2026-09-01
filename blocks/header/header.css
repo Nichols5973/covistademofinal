@@ -3,6 +3,13 @@
    Row 1: cream utility bar. Row 2: dark-green main nav with white logo/links,
    dropdown panels (logo-mark + sub-links), expandable search. */
 
+/* Reserve the true header height so main content starts below it (not under it).
+   Mobile = single 64px bar; desktop = utility bar (41px) + main nav (64px). */
+header.header-wrapper,
+header {
+  height: 64px;
+}
+
 header .nav-wrapper {
   position: sticky;
   top: 0;
@@ -224,6 +231,11 @@ header nav[data-menu-open="true"] .nav-hamburger span:nth-child(3) {
 
 /* ---------- Desktop ---------- */
 @media (width >= 900px) {
+  header.header-wrapper,
+  header {
+    height: 105px;
+  }
+
   header nav .nav-utility {
     display: block;
   }
