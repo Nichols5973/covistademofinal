@@ -61,18 +61,42 @@ function getPublishHost() {
   return getAuthorHost().replace('author', 'publish').replace(/\/$/, '');
 }
 
+/** Find the content-fragment path anywhere in the block (href or text). */
+function findContentPath(block) {
+  // Prefer an anchor/href pointing at a DAM content-fragment.
+  const link = [...block.querySelectorAll('a[href]')]
+    .map((a) => a.getAttribute('href'))
+    .find((h) => h && h.includes('/content/dam/'));
+  if (link) {
+    const m = link.match(/\/content\/dam\/[^"'?#\s]+/);
+    if (m) return m[0];
+  }
+  // Fall back to any cell whose text is a /content/dam/ path.
+  const cell = [...block.querySelectorAll('div')]
+    .map((d) => d.textContent.trim())
+    .find((t) => /^\/content\/dam\/\S+$/.test(t));
+  return cell || '';
+}
+
 export default async function decorate(block) {
   // The dialog renders one row per field, in model order:
-  //   1 reference (CF path, as a link) | 2 variation | 3 style | 4 alignment
-  const contentPath = block.querySelector(':scope > div:nth-child(1) a')?.textContent?.trim()
-    || block.querySelector(':scope > div:nth-child(1) > div')?.textContent?.trim();
-  const variationName = block.querySelector(':scope > div:nth-child(2) > div')?.textContent?.trim()
-    ?.toLowerCase().replace(/\s+/g, '_') || 'master';
-  const displayStyle = block.querySelector(':scope > div:nth-child(3) > div')?.textContent?.trim() || '';
-  const alignment = block.querySelector(':scope > div:nth-child(4) > div')?.textContent?.trim() || 'text-center';
+  //   1 reference (CF path) | 2 variation | 3 style | 4 alignment
+  const rows = [...block.children];
+  const contentPath = findContentPath(block);
+  const cellText = (i) => rows[i]?.querySelector(':scope > div')?.textContent?.trim()
+    || rows[i]?.textContent?.trim() || '';
+  const variationName = (cellText(1) || 'master').toLowerCase().replace(/\s+/g, '_');
+  const displayStyle = cellText(2);
+  const alignment = cellText(3) || 'text-center';
+
+  if (!contentPath) {
+    // eslint-disable-next-line no-console
+    console.warn('content-fragment: no /content/dam/ path found in block. Raw block HTML:', block.innerHTML);
+    block.innerHTML = '';
+    return;
+  }
 
   block.innerHTML = '';
-  if (!contentPath) return;
 
   const isAuthor = isAuthorEnvironment();
   const authorHost = getAuthorHost();
@@ -82,6 +106,11 @@ export default async function decorate(block) {
   const url = `${host}${CONFIG.GRAPHQL_QUERY};path=${encodeURIComponent(contentPath)}`
     + `;variation=${encodeURIComponent(variationName)};ts=${Date.now()}`;
 
+  // eslint-disable-next-line no-console
+  console.info('content-fragment: fetching', {
+    contentPath, variationName, displayStyle, alignment, isAuthor, url,
+  });
+
   let item;
   try {
     const resp = await fetch(url, { headers: { 'Content-Type': 'application/json' } });
@@ -90,10 +119,16 @@ export default async function decorate(block) {
     item = json?.data?.[CONFIG.RESPONSE_ROOT]?.item;
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.error('content-fragment: failed to fetch CF', { contentPath, variationName, error: e.message });
+    console.error('content-fragment: failed to fetch CF', {
+      contentPath, variationName, url, error: e.message,
+    });
     return;
   }
-  if (!item) return;
+  if (!item) {
+    // eslint-disable-next-line no-console
+    console.warn('content-fragment: query returned no item (check model/query field names)', { url });
+    return;
+  }
 
   const imgUrl = (isAuthor ? item.bannerimage?._authorUrl : item.bannerimage?._publishUrl)
     || item.bannerimage?._publishUrl || item.bannerimage?._authorUrl || '';
