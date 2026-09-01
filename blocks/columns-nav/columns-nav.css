@@ -1,0 +1,88 @@
+/* Block: columns-nav — sticky in-page sub-navigation bar */
+
+/* Values extracted from covista.com/our-story computed styles */
+
+/* full-width bar: override EDS section wrapper max-width so the bg + border span edge to edge */
+.columns-nav-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.columns-nav.block {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background-color: #fff;
+  border-bottom: 1px solid rgb(221 221 221);
+}
+
+/* row: label on the left, links pushed to the right */
+.columns-nav > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1400px;
+  min-height: 73px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* label cell (h3 > a "Our Story") */
+.columns-nav > div > div:first-child h3 {
+  margin: 0;
+  font-family: acumin-pro-wide-semi, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 36px;
+  color: var(--link-color);
+}
+
+.columns-nav > div > div:first-child h3 a:any-link {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+/* links cell: EDS wraps each link as p.button-container > a.button */
+.columns-nav > div > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 32px;
+}
+
+.columns-nav .button-container {
+  display: flex;
+  margin: 0;
+}
+
+/* reset EDS button pill styling back to the source's plain text links */
+.columns-nav a.button:any-link {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  color: var(--link-color);
+  font-family: acumin-pro-wide-semi, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: -0.27px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.columns-nav a.button:any-link:hover {
+  background: none;
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* source bar carries the `hide-on-mobile` class — hide below the desktop breakpoint */
+@media (width < 900px) {
+  .columns-nav.block {
+    display: none;
+  }
+}

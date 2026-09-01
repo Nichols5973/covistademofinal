@@ -1,0 +1,101 @@
+/* Block: columns-approach — two-column narrative + feature list */
+
+/* Values extracted from https://www.covista.com/our-story #approach computed styles */
+
+/* Mobile-first: stacked single column */
+.columns-approach > div {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.columns-approach img {
+  width: 100%;
+}
+
+/* Left column (narrative) — H2 renders dark green on source */
+.columns-approach h2 {
+  color: var(--dark-color);
+  margin: 0 0 18px;
+}
+
+/* "We exist to solve this challenge." emphasis is green on source */
+.columns-approach strong {
+  color: var(--dark-color);
+}
+
+/* Paragraphs — 18px light body, letter-spacing -0.27px */
+.columns-approach p {
+  font-size: var(--body-font-size-m);
+  line-height: 1.66;
+  letter-spacing: -0.27px;
+  margin: 18px 0;
+}
+
+/* Right column feature headings — large light serif in dark green.
+   Overrides the global h3 (28px bold sans, line-height 2). */
+.columns-approach h3 {
+  color: var(--dark-color);
+  font-family: albiona-light, georgia, 'Times New Roman', serif;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  margin: 40px 0 0;
+}
+
+/* Feature icons (source: proprietary cv-icomoon glyphs) — captured from the
+   source as PNGs and rendered above each right-column heading. */
+.columns-approach > div > div:last-child > h3::before {
+  content: '';
+  display: block;
+  width: 84px;
+  height: 84px;
+  margin-bottom: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.columns-approach > div > div:last-child > h3:nth-of-type(1)::before {
+  background-image: url('/icons/icon-expanding-access.png');
+}
+
+.columns-approach > div > div:last-child > h3:nth-of-type(2)::before {
+  background-image: url('/icons/icon-preparing-professionals.png');
+}
+
+.columns-approach > div > div:last-child > h3:nth-of-type(3)::before {
+  background-image: url('/icons/icon-connecting-students.png');
+}
+
+.columns-approach > div > div:last-child > h3:nth-of-type(4)::before {
+  background-image: url('/icons/icon-serving-communities.png');
+}
+
+.columns-approach > div > div:last-child > h3:nth-of-type(5)::before {
+  background-image: url('/icons/icon-powering-purpose.png');
+}
+
+/* First feature heading in the right column needs no extra top gap */
+.columns-approach > div > div:last-child > h3:first-child {
+  margin-top: 0;
+}
+
+@media (width >= 900px) {
+  .columns-approach > div {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .columns-approach > div > div {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* mobile heading scale-down does not apply — restore extracted sizes */
+  .columns-approach h3 {
+    font-size: 40px;
+  }
+}

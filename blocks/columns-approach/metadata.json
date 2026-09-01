@@ -1,0 +1,37 @@
+{
+  "variantName": "columns-approach",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.covista.com/our-story",
+    "originPage": "Our Story",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "narrative-plus-featurelist",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "narrative column + icon-led feature-list column",
+    "buttonCount": 0,
+    "imageCount": 5
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "two-column sections pairing narrative copy with an icon feature list",
+      "'our approach' style explanatory layouts"
+    ],
+    "notSuitableFor": [
+      "simple image + text feature rows",
+      "dark full-bleed media sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/our-story"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}

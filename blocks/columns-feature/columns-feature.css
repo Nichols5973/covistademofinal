@@ -1,0 +1,147 @@
+/* columns-feature — white-background media + copy + CTA feature row.
+   Values extracted from covista.com/our-story (rows: "What drives us forward",
+   "Meet our leaders", "AI-ready graduates").
+   Source is full-bleed edge-to-edge: image ~570x400, copy column with a
+   two-tone mauve CTA button. Instances alternate image side (odd = reversed). */
+
+/* full-bleed: source rows span the viewport, not the 1200px section grid */
+.columns-feature-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+/* mobile-first: stack image over copy */
+.columns-feature > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-feature img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.columns-feature > div > div {
+  order: 1;
+  padding: 32px 24px;
+}
+
+.columns-feature > div > .columns-feature-img-col {
+  order: 0;
+  padding: 0;
+}
+
+.columns-feature > div > .columns-feature-img-col img {
+  aspect-ratio: 570 / 400;
+}
+
+/* typography — extracted from source */
+.columns-feature h2 {
+  margin: 0;
+  font-family: acumin-pro-wide-medium, sans-serif;
+  font-size: var(--heading-font-size-xl); /* 40px */
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -0.6px;
+  color: #82404c; /* source heading span color */
+}
+
+.columns-feature p {
+  margin: 18px 0 0;
+  font-family: acumin-pro-wide-light, sans-serif;
+  font-size: var(--body-font-size-m); /* 18px */
+  font-weight: 400;
+  line-height: 29.88px;
+  letter-spacing: -0.27px;
+  color: #000;
+}
+
+/* CTA: two-tone mauve button (text box + arrow square) */
+main .columns-feature .button-container {
+  display: inline-block;
+  margin: 25px 0 0;
+}
+
+main .columns-feature a.button:any-link {
+  position: relative;
+  display: inline-block;
+  margin: 0 48px 0 0; /* reserve space for the adjacent arrow square */
+  border: none;
+  border-radius: 0;
+  padding: 5px 16px; /* source text-box padding */
+  background: #d7b5b9;
+  color: #000;
+  font-family: acumin-pro-wide-medium, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 30px; /* 30 + 5+5 padding = 40px tall */
+  letter-spacing: -0.27px;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: visible; /* override global a.button overflow:hidden so arrow square shows */
+}
+
+main .columns-feature a.button:any-link::after {
+  content: "\2192"; /* right arrow */
+  position: absolute;
+  top: 0;
+  right: -48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #ab555f;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+}
+
+main .columns-feature a.button:any-link:hover {
+  background: #d7b5b9;
+  color: #000;
+  text-decoration: none;
+}
+
+@media (width >= 900px) {
+  .columns-feature > div {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  /* image column: fixed source proportion (570 of 1440) */
+  .columns-feature > div > .columns-feature-img-col {
+    flex: 0 0 570px;
+    max-width: 570px;
+    height: 400px;
+    order: unset;
+  }
+
+  .columns-feature > div > .columns-feature-img-col img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  /* copy column: vertically centered, source side padding L133 R195 */
+  .columns-feature > div > div {
+    flex: 1 1 0;
+    min-width: 0;
+    order: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 195px 0 133px;
+  }
+
+  /* reversed instances: image on the right, padding mirrored.
+     Extra class in the selector keeps specificity above the base copy-column
+     rule above so overrides win and lint ordering stays ascending. */
+  .columns-feature.columns-feature-reverse > div {
+    flex-direction: row-reverse;
+  }
+
+  .columns-feature.columns-feature-reverse > div > div {
+    padding: 0 133px 0 195px;
+  }
+}

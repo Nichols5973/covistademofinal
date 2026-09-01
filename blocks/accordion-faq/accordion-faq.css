@@ -1,0 +1,168 @@
+/* Block: accordion-faq
+ * Design extracted from covista.com/our-story #faq (computed styles).
+ * Layout: heading/contact on the left, expandable Q&A on the right.
+ */
+
+/* ---- Section: full-width band + two-column (50/50) layout ---- */
+main .section.accordion-faq-container {
+  background-color: #e8edea; /* source #faq background (brand.json colors.dark) */
+  margin: 0;
+  padding: 60px 0 10px;
+}
+
+/* mobile: heading area then accordion, stacked (default flow) */
+main .section.accordion-faq-container > div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (width >= 900px) {
+  main .section.accordion-faq-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    column-gap: 40px;
+
+    /* full-width bg, content centered to 1200px */
+    padding-inline: max(32px, calc((100% - 1200px) / 2));
+  }
+
+  main .section.accordion-faq-container > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* ---- Sidebar: heading, "More questions?", Contact us pill ---- */
+main .section.accordion-faq-container .default-content-wrapper h2 {
+  font-family: acumin-pro-wide-medium, sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -0.6px;
+  color: #000;
+  margin: 33.2px 0;
+}
+
+main .section.accordion-faq-container .default-content-wrapper p {
+  font-family: acumin-pro-wide-light, sans-serif;
+  font-size: 18px;
+  color: #000;
+  margin: 18px 0;
+}
+
+/* Contact us: restore the source pill (overrides the global button->text reset) */
+main .section.accordion-faq-container .default-content-wrapper .button-container {
+  display: block;
+  margin: 18px 0;
+}
+
+main .section.accordion-faq-container .default-content-wrapper a.button:any-link {
+  display: inline-block;
+  margin: 0;
+  padding: 5px 16px;
+  border: none;
+  border-radius: 0;
+  background-color: #c9d3cc; /* source Contact us button bg */
+  color: #000;
+  font-family: acumin-pro-wide-medium, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.27px;
+  text-decoration: none;
+}
+
+main .section.accordion-faq-container .default-content-wrapper a.button:any-link:hover,
+main .section.accordion-faq-container .default-content-wrapper a.button:any-link:focus {
+  background-color: #b7c4bc;
+  color: #000;
+  text-decoration: none;
+}
+
+/* ---- Accordion items ---- */
+.accordion-faq {
+  display: block;
+}
+
+.accordion-faq .accordion-faq-item {
+  border: none;
+}
+
+/* top rule above the first question (source shows a divider above the list) */
+.accordion-faq .accordion-faq-item:first-child .accordion-faq-item-label {
+  border-top: 1px solid #000;
+}
+
+/* question row */
+/* stylelint-disable-next-line no-descending-specificity */
+.accordion-faq .accordion-faq-item-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 24px 60px 24px 16px;
+  border-bottom: 1px solid #000;
+  color: #000;
+  font-family: albiona-medium, Rockwell, "Josefin Slab", Georgia, serif;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 28.8px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion-faq .accordion-faq-item-label::-webkit-details-marker {
+  display: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.accordion-faq .accordion-faq-item-label p {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
+/* toggle chevron (recreates the source expand/collapse icon) */
+.accordion-faq .accordion-faq-item-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  width: 12px;
+  height: 12px;
+  border: solid #222;
+  border-width: 0 2px 2px 0;
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.accordion-faq .accordion-faq-item[open] .accordion-faq-item-label::after {
+  transform: translateY(-30%) rotate(-135deg);
+}
+
+/* answer body */
+.accordion-faq .accordion-faq-item-body {
+  padding: 8px 16px 24px;
+  color: #000;
+  font-family: acumin-pro-wide-light, sans-serif;
+  font-size: 18px;
+  line-height: 29.88px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.accordion-faq .accordion-faq-item-body p {
+  margin: 0 0 1em;
+  font-size: 18px;
+  line-height: 29.88px;
+  color: #000;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.accordion-faq .accordion-faq-item-body p:last-child {
+  margin-bottom: 0;
+}
+
+.accordion-faq .accordion-faq-item:not([open]) .accordion-faq-item-body {
+  display: none;
+}

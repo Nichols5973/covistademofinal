@@ -1,0 +1,37 @@
+{
+  "variantName": "columns-nav",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.covista.com/our-story",
+    "originPage": "Our Story",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "in-page-nav",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "label column + anchor-links column",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "sticky in-page anchor navigation bars",
+      "section label on one side with jump links on the other"
+    ],
+    "notSuitableFor": [
+      "content-heavy side-by-side layouts",
+      "media + text feature rows"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/our-story"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}

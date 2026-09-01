@@ -1,0 +1,17 @@
+{
+  "type": "xwalk",
+  "pluginRoot": "/home/node/.excat-marketplaces/excat-marketplace/excat",
+  "sites": {
+    "covistademofinal": {
+      "previewOrg": "nichols5973",
+      "previewSite": "covistademofinal",
+      "contentHostUrl": "author-p87302-e1492027.adobeaemcloud.com",
+      "aemSitePath": "/content/covistademo1",
+      "aemAssetsFolderPath": "/content/dam/covistademo1",
+      "aemSiteName": "covistademo1",
+      "aemSiteTitle": "covistademo1",
+      "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json",
+      "baseUrl": "https://www.covista.com/our-story"
+    }
+  }
+}

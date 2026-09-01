@@ -1,0 +1,37 @@
+{
+  "variantName": "columns-feature",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.covista.com/our-story",
+    "originPage": "Our Story",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "media-text-cta-feature",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image column + text-with-CTA column",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "white-background image + heading + paragraph + CTA feature rows",
+      "repeated promotional feature sections (What drives us forward, Meet our leaders, AI-ready graduates)"
+    ],
+    "notSuitableFor": [
+      "dark full-bleed sections",
+      "in-page anchor navigation bars"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/our-story", "/our-story", "/our-story"],
+    "reuseCount": 3,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}

@@ -1,0 +1,95 @@
+/* Block: quote-accent — pull-quote on soft-pink/cream accent background.
+   Values extracted from covista.com/our-story computed styles.
+   Source layout: portrait photo (left) + large terracotta serif pull-quote (right). */
+
+.quote-accent blockquote {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px 0;
+}
+
+/* Portrait photo (left column) — present when the block carries an image. */
+.quote-accent-figure {
+  margin: 0;
+}
+
+.quote-accent-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Two-column layout when a portrait is present. */
+@media (width >= 900px) {
+  .quote-accent.quote-accent-has-image {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .quote-accent.quote-accent-has-image .quote-accent-figure {
+    flex: 0 0 432px;
+    max-width: 432px;
+  }
+
+  .quote-accent.quote-accent-has-image blockquote {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Pull-quote: large terracotta serif (source: albiona-medium 28px / 39.76px) */
+.quote-accent blockquote .quote-accent-quotation {
+  margin: 0;
+  color: rgb(184 83 46);
+  font-family: albiona-medium, rockwell, 'Josefin Slab', georgia, serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 39.76px;
+  letter-spacing: -0.42px;
+  text-align: left;
+}
+
+.quote-accent blockquote .quote-accent-quotation p {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+}
+
+/* Source shows literal straight quotes in the copy — do not add curly quotes. */
+.quote-accent blockquote .quote-accent-quotation p:first-child::before,
+.quote-accent blockquote .quote-accent-quotation p:last-child::after {
+  content: none;
+}
+
+/* Attribution: name + title in black acumin-pro-wide-light, 15px, left-aligned */
+.quote-accent blockquote .quote-accent-attribution {
+  margin: 15px 0 0;
+  text-align: left;
+}
+
+.quote-accent blockquote .quote-accent-attribution p {
+  margin: 0;
+  color: #000;
+  font-family: var(--body-font-family);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 29.88px;
+}
+
+/* No em-dash prefix in source attribution. */
+.quote-accent blockquote .quote-accent-attribution p:first-child::before {
+  content: none;
+  padding-right: 0;
+}
+
+@media (width >= 900px) {
+  .quote-accent blockquote {
+    padding: 40px 0;
+  }
+}

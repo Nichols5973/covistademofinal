@@ -1,0 +1,85 @@
+/* columns-dark — dark green media + copy section ("Our name")
+   Values extracted from covista.com/our-story #name.
+   Section bg (#1b4929) + light text handled by .section.dark-green in styles.css. */
+
+.columns-dark > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-dark img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* stack order on mobile: image first, copy second */
+.columns-dark > div > div {
+  order: 1;
+  padding: 40px 24px;
+}
+
+.columns-dark > div > .columns-dark-img-col {
+  order: 0;
+  padding: 0;
+}
+
+.columns-dark-img-col picture {
+  display: block;
+  width: 100%;
+}
+
+.columns-dark > div > .columns-dark-img-col img {
+  aspect-ratio: 674 / 379;
+}
+
+/* typography — cream copy on green (source uses #fff9f5) */
+.columns-dark h2 {
+  margin: 0;
+  font-family: acumin-pro-wide-medium, sans-serif;
+  font-size: var(--heading-font-size-xl); /* 40px */
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -0.6px;
+  color: var(--light-color);
+}
+
+.columns-dark p {
+  margin: 18px 0 0;
+  font-family: acumin-pro-wide-light, sans-serif;
+  font-size: var(--body-font-size-m); /* 18px */
+  font-weight: 400;
+  line-height: 29.88px;
+  color: var(--light-color);
+}
+
+@media (width >= 900px) {
+  .columns-dark > div {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .columns-dark > div > div {
+    flex: 1 1 0;
+    min-width: 0;
+    order: unset;
+  }
+
+  /* content column: vertically centered copy with generous padding (source 50px 102px) */
+  .columns-dark > div > div:not(.columns-dark-img-col) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px 80px;
+  }
+
+  /* media column fills its half; image covers full height */
+  .columns-dark > div > .columns-dark-img-col {
+    display: flex;
+  }
+
+  .columns-dark > div > .columns-dark-img-col img {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+}

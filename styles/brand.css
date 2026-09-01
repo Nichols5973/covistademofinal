@@ -1,0 +1,30 @@
+/*
+ * brand.css — design tokens migrated from https://www.covista.com/our-story
+ * Fonts: Acumin Pro Wide (Adobe Fonts). Accent: dark green. Warm off-white light bg.
+ */
+
+:root {
+  /* fonts */
+  --heading-font-family: acumin-pro-wide-medium, acumin-pro-wide-semi, roboto-condensed, sans-serif;
+  --heading-font-family-semi: acumin-pro-wide-semi, roboto-condensed, sans-serif;
+  --body-font-family: acumin-pro-wide-light, roboto, sans-serif;
+
+  /* colors */
+  --background-color: #fff;
+  --text-color: #000;
+  --link-color: #1b4929;              /* dark green accent */
+  --link-hover-color: #12331d;
+  --brand-green: #1b4929;
+  --brand-cream: #fff9f5;             /* warm off-white (light section) */
+  --brand-mint: #e8edea;             /* muted mint (dark-ish section variant) */
+  --light-color: #fff9f5;
+  --dark-color: #1b4929;
+
+  /* heading sizes (desktop) */
+  --heading-size-xxl: 48px;
+  --heading-size-xl: 40px;
+  --heading-size-l: 18px;
+
+  /* spacing */
+  --nav-height: 64px;
+}

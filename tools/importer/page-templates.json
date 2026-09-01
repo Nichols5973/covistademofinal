@@ -1,0 +1,164 @@
+{
+  "metadata": {
+    "projectType": "xwalk"
+  },
+  "templates": [
+    {
+      "name": "our-story",
+      "urls": [
+        "https://www.covista.com/our-story"
+      ],
+      "representativeUrl": "https://www.covista.com/our-story",
+      "description": "Our Story narrative page: hero banner, sticky anchor nav, approach feature list, pull-quote, dark media section, three image+text+CTA feature sections, FAQ accordion, and a footnote.",
+      "urlPattern": "/*",
+      "blocks": [
+        {
+          "name": "hero-overlay",
+          "instances": [
+            "div.t-layout__one-column.edge-to-edge.no-padding.no-max-width.p-universal-bg-color--none.p-section__align--none.layout.layout--atge-one-column"
+          ]
+        },
+        {
+          "name": "columns-nav",
+          "instances": [
+            "div.t-layout__one-column.standard-width.p-universal-bg-color--none.pad-top-0.pad-bottom-0.p-section__align--none.layout.layout--atge-one-column"
+          ]
+        },
+        {
+          "name": "columns-approach",
+          "instances": [
+            "#approach"
+          ]
+        },
+        {
+          "name": "quote-accent",
+          "instances": [
+            "div.t-layout__one-column.standard-width.p-universal-bg-color--secondary.pad-bottom-50.p-section__align--none.layout.layout--atge-one-column"
+          ]
+        },
+        {
+          "name": "columns-dark",
+          "instances": [
+            "#name"
+          ]
+        },
+        {
+          "name": "columns-feature",
+          "instances": [
+            "div.t-layout__one-column.edge-to-edge.no-padding.no-max-width.p-universal-bg-color--white.pad-y-20-desktop.p-section__align--none.layout.layout--atge-one-column:nth-of-type(6)",
+            "div.t-layout__one-column.edge-to-edge.no-padding.no-max-width.p-universal-bg-color--white.p-section__align--none.layout.layout--atge-one-column:nth-of-type(8)",
+            "div.t-layout__one-column.edge-to-edge.no-padding.no-max-width.p-universal-bg-color--white.pad-y-20-desktop.pad-top-0.pad-bottom-50-desktop.p-section__align--none.layout.layout--atge-one-column"
+          ]
+        },
+        {
+          "name": "accordion-faq",
+          "instances": [
+            "#faq"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "rc4",
+          "name": "Hero banner",
+          "selector": "div.t-layout__one-column.edge-to-edge.no-padding.no-max-width.p-universal-bg-color--none.p-section__align--none.layout.layout--atge-one-column",
+          "style": null,
+          "blocks": [
+            "hero-overlay"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc3",
+          "name": "Sticky anchor navigation",
+          "selector": "div.t-layout__one-column.standard-width.p-universal-bg-color--none.pad-top-0.pad-bottom-0.p-section__align--none.layout.layout--atge-one-column",
+          "style": null,
+          "blocks": [
+            "columns-nav"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc5",
+          "name": "Our Approach feature list",
+          "selector": "#approach",
+          "style": "light",
+          "blocks": [
+            "columns-approach"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc6",
+          "name": "Pull-quote",
+          "selector": "div.t-layout__one-column.standard-width.p-universal-bg-color--secondary.pad-bottom-50.p-section__align--none.layout.layout--atge-one-column",
+          "style": "soft-pink",
+          "blocks": [
+            "quote-accent"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc7",
+          "name": "Our Name dark media section",
+          "selector": "#name",
+          "style": "dark-green",
+          "blocks": [
+            "columns-dark"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc8",
+          "name": "What drives us forward feature",
+          "selector": "div.t-layout__one-column.edge-to-edge.no-padding.no-max-width.p-universal-bg-color--white.pad-y-20-desktop.p-section__align--none.layout.layout--atge-one-column:nth-of-type(6)",
+          "style": "light",
+          "blocks": [
+            "columns-feature"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc10",
+          "name": "Meet our leaders feature",
+          "selector": "div.t-layout__one-column.edge-to-edge.no-padding.no-max-width.p-universal-bg-color--white.p-section__align--none.layout.layout--atge-one-column:nth-of-type(8)",
+          "style": "light",
+          "blocks": [
+            "columns-feature"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc12",
+          "name": "AI-ready graduates feature",
+          "selector": "div.t-layout__one-column.edge-to-edge.no-padding.no-max-width.p-universal-bg-color--white.pad-y-20-desktop.pad-top-0.pad-bottom-50-desktop.p-section__align--none.layout.layout--atge-one-column",
+          "style": "light",
+          "blocks": [
+            "columns-feature"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc13",
+          "name": "FAQ",
+          "selector": "#faq",
+          "style": "light",
+          "blocks": [
+            "accordion-faq"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc14",
+          "name": "Disclaimer footnote",
+          "selector": "div.t-layout__one-column.standard-width.p-universal-bg-color--none.pad-top-40.pad-bottom-30.p-section__align--none.layout.layout--atge-one-column",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "div.t-layout__one-column.standard-width.p-universal-bg-color--none.pad-top-40.pad-bottom-30.p-section__align--none.layout.layout--atge-one-column"
+          ]
+        }
+      ]
+    }
+  ]
+}
