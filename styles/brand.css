@@ -15,7 +15,8 @@
   --link-color: #1b4929;              /* dark green accent */
   --link-hover-color: #12331d;
   --brand-green: #1b4929;
-  --brand-cream: #fff9f5;             /* warm off-white (light section) */
+  --brand-cream: #fff9f5;             /* warm off-white (light section band) */
+  --brand-pink: #fdf1ec;             /* darker pink panel layered on the cream band */
   --brand-mint: #e8edea;             /* muted mint (dark-ish section variant) */
   --light-color: #fff9f5;
   --dark-color: #1b4929;

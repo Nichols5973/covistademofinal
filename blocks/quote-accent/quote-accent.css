@@ -36,9 +36,25 @@
   }
 
   .quote-accent.quote-accent-has-image blockquote {
+    position: relative;
     flex: 1;
     margin: 0;
     padding: 0;
+  }
+
+  /* Darker pink panel layered on the cream section band, sitting behind the
+     quote text column (source: .p-cv-carousel__content::before, #fdf1ec). */
+  .quote-accent.quote-accent-has-image blockquote::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -32px;
+    z-index: -1;
+    width: 438px;
+    max-width: calc(100% + 64px);
+    height: 432px;
+    background-color: var(--brand-pink);
+    transform: translateY(-50%);
   }
 }
 
