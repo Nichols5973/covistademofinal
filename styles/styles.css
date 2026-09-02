@@ -470,6 +470,46 @@ main .section.soft-pink.columns-container:not(:has(.columns-img-col)) h3 {
   color: #000;
 }
 
+/* Values "Together We" wheel graphic sits under the intro copy (left column). */
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.soft-pink.columns-container:not(:has(.columns-img-col)) img {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  margin: 24px 0 0;
+}
+
+/* ── Testimonials as a CSS swipe slider (pvv only) ────────────────────────
+   quote-accent is shared with our-story, so we DON'T touch that block — this
+   only lays out the pvv quotes SECTION as a horizontal scroll-snap slider.
+   Hook: the section has two .quote-accent-wrapper children; our-story's quote
+   section has one, so it never matches. */
+main .section.quote-accent-container:has(.quote-accent-wrapper + .quote-accent-wrapper) .default-content-wrapper,
+main .section.quote-accent-container:has(.quote-accent-wrapper + .quote-accent-wrapper) {
+  padding-top: 8px;
+}
+
+/* the wrappers become horizontally-scrolling, snapping slides */
+main .section.quote-accent-container:has(.quote-accent-wrapper + .quote-accent-wrapper) {
+  display: flex;
+  gap: 0;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* firefox */
+}
+
+main .section.quote-accent-container:has(.quote-accent-wrapper + .quote-accent-wrapper)::-webkit-scrollbar {
+  display: none;
+}
+
+main .section.quote-accent-container:has(.quote-accent-wrapper + .quote-accent-wrapper) .quote-accent-wrapper {
+  flex: 0 0 100%;
+  max-width: 100%;
+  scroll-snap-align: center;
+}
+
 /* Hero banner: the pvv hero is a `light` section holding the H1 + breadcrumb
    as default content (no block). our-story has NO light section with an <h1>
    (its H1 lives in hero-overlay-container), so :has(h1) targets only pvv. */

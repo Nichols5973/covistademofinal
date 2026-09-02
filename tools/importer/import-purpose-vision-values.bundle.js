@@ -104,6 +104,10 @@ var CustomImportScript = (() => {
       const heading = narrativeInner.querySelector("h1, h2, h3");
       if (heading) narrativeCell.push(heading);
       narrativeInner.querySelectorAll(":scope > p").forEach((p) => narrativeCell.push(p));
+      const narrativeImg = narrativeInner.querySelector(".c-image img, .embedded-entity img, img");
+      if (narrativeImg && !(narrativeImg.getAttribute("src") || "").startsWith("data:")) {
+        narrativeCell.push(narrativeImg);
+      }
     }
     const items = Array.from(element.querySelectorAll(".c-universal-grid__item--universal"));
     const featureCell = [];

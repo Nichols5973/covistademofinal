@@ -19,6 +19,14 @@ export default function parse(element, { document }) {
     const heading = narrativeInner.querySelector('h1, h2, h3');
     if (heading) narrativeCell.push(heading);
     narrativeInner.querySelectorAll(':scope > p').forEach((p) => narrativeCell.push(p));
+    // Optional supporting graphic embedded in the narrative richtext (e.g. the
+    // pvv "Together We" values wheel, wrapped in .c-image / embedded-entity).
+    // Additive: our-story's approach narrative has no such image, so this is a
+    // no-op there. Skip decorative SVG/data-URI overlays.
+    const narrativeImg = narrativeInner.querySelector('.c-image img, .embedded-entity img, img');
+    if (narrativeImg && !(narrativeImg.getAttribute('src') || '').startsWith('data:')) {
+      narrativeCell.push(narrativeImg);
+    }
   }
 
   // Right cell: the feature-list items.
