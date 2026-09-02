@@ -452,12 +452,22 @@ main .section.soft-pink.columns-container:has(#to-be-the-destination-where-healt
   color: #b8532e; /* coral (source rgb(184,83,46)) */
 }
 
-/* Values section: soft-pink columns WITHOUT an image cell (intro + values list).
-   Two-column layout: intro copy left, values list right. */
+/* Values + Learn-more: soft-pink columns WITHOUT an image cell. Base spacing
+   only — backgrounds are set per-section below to match the source (Values =
+   white/no fill, Learn-more = cream). */
 main .section.soft-pink.columns-container:not(:has(.columns-img-col)) {
-  background-color: #e6d5d7;
   margin: 0;
   padding: 56px 0;
+}
+
+/* Values section: no background fill (source is plain white). */
+main .section.soft-pink.columns-container:has(#our-values-bring-our-purpose-and-vision-to-life) {
+  background-color: transparent;
+}
+
+/* Learn-more band: cream (source #fff9f5). */
+main .section.soft-pink.columns-container:has(#learn-more-about-covista) {
+  background-color: var(--brand-cream);
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
