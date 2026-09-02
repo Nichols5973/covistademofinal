@@ -366,24 +366,48 @@ main .section.soft-pink.columns-container:has(.columns-img-col) .columns-wrapper
   padding: 0;
 }
 
-main .section.soft-pink.columns-container:has(.columns-img-col) .columns > div {
-  gap: 0;
-}
-
-/* copy column: generous padding, vertically centred */
+/* Mobile (base columns.css stacks the columns): image full width, capped
+   height so it doesn't dominate; copy gets comfortable padding. */
 main .section.soft-pink.columns-container:has(.columns-img-col) .columns > div > div:not(.columns-img-col) {
-  padding: 48px 8vw;
+  padding: 32px 24px;
 }
 
-/* image column spans its half edge-to-edge */
 main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col {
   padding: 0;
+  overflow: hidden;
 }
 
 main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col img {
+  display: block;
   width: 100%;
   height: 100%;
+  max-height: 360px;
   object-fit: cover;
+}
+
+/* Desktop: true 50/50 side-by-side, image flush to the section edge and
+   clipped so it can't take its natural (oversized) height. */
+@media (width >= 900px) {
+  main .section.soft-pink.columns-container:has(.columns-img-col) .columns > div {
+    gap: 0;
+    align-items: stretch;
+  }
+
+  main .section.soft-pink.columns-container:has(.columns-img-col) .columns > div > div:not(.columns-img-col) {
+    flex: 1 1 50%;
+    align-self: center;
+    padding: 56px 6vw;
+  }
+
+  main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col {
+    flex: 1 1 50%;
+    max-width: 50%;
+    align-self: stretch;
+  }
+
+  main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col img {
+    max-height: 520px;
+  }
 }
 
 /* eyebrow ("Our purpose"/"Our vision"): bold wide label */
