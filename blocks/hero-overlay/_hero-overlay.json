@@ -21,7 +21,7 @@
       "id": "hero-overlay",
       "fields": [
         {
-          "component": "image",
+          "component": "reference",
           "valueType": "string",
           "name": "image",
           "label": "Image",
