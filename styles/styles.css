@@ -381,12 +381,11 @@ main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col
   display: block;
   width: 100%;
   height: 100%;
-  max-height: 360px;
+  max-height: 420px;
   object-fit: cover;
 }
 
-/* Desktop: true 50/50 side-by-side, image flush to the section edge and
-   clipped so it can't take its natural (oversized) height. */
+/* Desktop: true 50/50 side-by-side; image fills its half edge-to-edge. */
 @media (width >= 900px) {
   main .section.soft-pink.columns-container:has(.columns-img-col) .columns > div {
     gap: 0;
@@ -396,7 +395,7 @@ main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col
   main .section.soft-pink.columns-container:has(.columns-img-col) .columns > div > div:not(.columns-img-col) {
     flex: 1 1 50%;
     align-self: center;
-    padding: 56px 6vw;
+    padding: 64px 5vw;
   }
 
   main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col {
@@ -406,7 +405,16 @@ main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col
   }
 
   main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col img {
-    max-height: 520px;
+    height: 100%;
+    max-height: none;
+  }
+
+  /* Image-side alternation matching the source: "Our purpose" = text left /
+     image right; "Our vision" = image left / text right. Each band is
+     identified by its unique inner heading id. Base DOM order is IMG,TEXT so
+     the purpose band is reversed to put text first. */
+  main .section.soft-pink.columns-container:has(#we-open-doors-and-unlock-potential) .columns > div {
+    flex-direction: row-reverse;
   }
 }
 
@@ -420,14 +428,22 @@ main .section.soft-pink.columns-container:has(.columns-img-col) .columns > div >
   color: #000;
 }
 
-/* heading: 40px medium, black (source) */
+/* heading: 40px medium (source). Colour differs per band:
+   purpose = mauve, vision = coral. */
 main .section.soft-pink.columns-container:has(.columns-img-col) h2 {
   margin: 0 0 18px;
   font-family: acumin-pro-wide-medium, sans-serif;
   font-size: var(--heading-font-size-xl);
   font-weight: 500;
   line-height: 1.2;
-  color: #000;
+}
+
+main .section.soft-pink.columns-container:has(#we-open-doors-and-unlock-potential) h2 {
+  color: #82404c; /* mauve (source rgb(130,64,76)) */
+}
+
+main .section.soft-pink.columns-container:has(#to-be-the-destination-where-healthcare-ambitions-are-made-possible) h2 {
+  color: #b8532e; /* coral (source rgb(184,83,46)) */
 }
 
 /* Values section: soft-pink columns WITHOUT an image cell (intro + values list).
@@ -438,6 +454,7 @@ main .section.soft-pink.columns-container:not(:has(.columns-img-col)) {
   padding: 56px 0;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 main .section.soft-pink.columns-container:not(:has(.columns-img-col)) h2 {
   font-family: acumin-pro-wide-medium, sans-serif;
   font-size: var(--heading-font-size-xl);
