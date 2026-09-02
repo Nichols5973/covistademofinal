@@ -106,6 +106,13 @@ async function applyChanges(event) {
       const blockResource = block.getAttribute('data-aue-resource');
       const newBlock = parsedUpdate.querySelector(`[data-aue-resource="${blockResource}"]`);
       if (newBlock) {
+        // Capture ALL current nodes for this resource before inserting the new
+        // one. On some edits (e.g. adding an asset) the change event can fire
+        // again while loadBlock() is still awaiting, so more than one stale
+        // copy may already exist. Removing every prior node — not just the one
+        // `block` reference — makes the swap idempotent and prevents a
+        // duplicated block being stranded in the canvas.
+        const staleBlocks = [...document.querySelectorAll(`.block[data-aue-resource="${blockResource}"]`)];
         newBlock.style.display = 'none';
         block.insertAdjacentElement('afterend', newBlock);
         decorateButtons(newBlock);
@@ -113,7 +120,9 @@ async function applyChanges(event) {
         decorateBlock(newBlock);
         decorateRichtext(newBlock);
         await loadBlock(newBlock);
-        block.remove();
+        staleBlocks.forEach((el) => {
+          if (el !== newBlock) el.remove();
+        });
         setState(newBlock, state);
         newBlock.style.display = null;
         return true;
