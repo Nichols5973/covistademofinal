@@ -11,7 +11,17 @@ const TARGET = '/content/covistademo1/language-masters/en/purpose-vision-values'
 const OUT = path.join(ROOT, 'migration-work/pvv-page-package');
 const SRC_XML = path.join(ROOT, 'migration-work/jcr-content/our-story/purpose-vision-values.xml');
 
-const xml = fs.readFileSync(SRC_XML, 'utf8');
+let xml = fs.readFileSync(SRC_XML, 'utf8');
+
+// Escape any stray raw ampersands that md2jcr left unescaped inside attribute
+// values (e.g. linkText="Purpose, Vision & Values"). A bare '&' that is not
+// already the start of a valid XML entity breaks the Vault DocView parser
+// ("The entity name must immediately follow the '&'"). Only touch '&' that is
+// NOT followed by a known entity or a numeric char-reference.
+const rawAmp = /&(?!(?:amp|lt|gt|quot|apos);|#\d+;|#x[0-9a-fA-F]+;)/g;
+const before = (xml.match(rawAmp) || []).length;
+xml = xml.replace(rawAmp, '&amp;');
+if (before) console.log(`escaped ${before} stray '&' in JCR XML`);
 
 // Write the page node .content.xml at the target JCR path.
 const pageDir = path.join(OUT, 'jcr_root', TARGET.slice(1));
