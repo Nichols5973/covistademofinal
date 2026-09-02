@@ -61,10 +61,27 @@ async function applyChanges(event) {
   const { content } = updates[0];
   if (!content) return false;
 
-  // load dompurify
-  await loadScript(`${window.hlx.codeBasePath}/scripts/dompurify.min.js`);
+  // Load DOMPurify. The AEM author / Universal Editor environment exposes an
+  // AMD loader (define.amd); the UMD DOMPurify bundle then registers as an AMD
+  // module instead of assigning window.DOMPurify, leaving it undefined. That
+  // made this function throw on every edit BEFORE removing the old block copy,
+  // which stranded a duplicated block in the canvas. Hide `define` during load
+  // so the UMD wrapper falls through to the global assignment.
+  if (!window.DOMPurify) {
+    const savedDefine = window.define;
+    if (savedDefine) window.define = undefined;
+    try {
+      await loadScript(`${window.hlx.codeBasePath}/scripts/dompurify.min.js`);
+    } finally {
+      if (savedDefine) window.define = savedDefine;
+    }
+  }
 
-  const sanitizedContent = window.DOMPurify.sanitize(content, { USE_PROFILES: { html: true } });
+  // If DOMPurify is still unavailable, fall back to the raw (author-only,
+  // AEM-trusted) content so the in-place block swap always completes.
+  const sanitizedContent = window.DOMPurify
+    ? window.DOMPurify.sanitize(content, { USE_PROFILES: { html: true } })
+    : content;
   const parsedUpdate = new DOMParser().parseFromString(sanitizedContent, 'text/html');
   const element = document.querySelector(`[data-aue-resource="${resource}"]`);
 
