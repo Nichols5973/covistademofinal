@@ -353,10 +353,12 @@ main .section.dark-green a:any-link {
    columns-container, so nothing here can affect our-story.
    Source: covista.com/our-story/purpose-vision-values computed styles. */
 
-/* Accent bands (Our purpose / Our vision): soft-pink full-bleed media+text.
-   The soft-pink columns section that has an image cell = an accent band. */
+/* Accent bands (Our purpose / Our vision): a pink text CARD + an image, both
+   inset on a CREAM band — matching the source (cream #fff9f5 band, pink
+   #e6d5d7 text card, ~40/60 split with a small gap). The soft-pink columns
+   section that has an image cell = an accent band. */
 main .section.soft-pink.columns-container:has(.columns-img-col) {
-  background-color: #e6d5d7; /* source cc-bg-palette-014 */
+  background-color: var(--brand-cream); /* cream band (source #fff9f5) */
   margin: 0;
   padding: 0;
 }
@@ -366,10 +368,10 @@ main .section.soft-pink.columns-container:has(.columns-img-col) .columns-wrapper
   padding: 0;
 }
 
-/* Mobile (base columns.css stacks the columns): image full width, capped
-   height so it doesn't dominate; copy gets comfortable padding. */
+/* Mobile (base columns.css stacks): text card pink, image full width. */
 main .section.soft-pink.columns-container:has(.columns-img-col) .columns > div > div:not(.columns-img-col) {
   padding: 32px 24px;
+  background-color: #e6d5d7;
 }
 
 main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col {
@@ -385,22 +387,27 @@ main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col
   object-fit: cover;
 }
 
-/* Desktop: true 50/50 side-by-side; image fills its half edge-to-edge. */
+/* Desktop: ~40/60 split, pink text card + image inset with a gap. */
 @media (width >= 900px) {
   main .section.soft-pink.columns-container:has(.columns-img-col) .columns > div {
-    gap: 0;
+    gap: 16px;
     align-items: stretch;
+    padding: 24px;
   }
 
   main .section.soft-pink.columns-container:has(.columns-img-col) .columns > div > div:not(.columns-img-col) {
-    flex: 1 1 50%;
-    align-self: center;
-    padding: 64px 5vw;
+    flex: 0 0 37%;
+    max-width: 37%;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px;
   }
 
   main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col {
-    flex: 1 1 50%;
-    max-width: 50%;
+    flex: 1 1 auto;
+    max-width: none;
     align-self: stretch;
   }
 
