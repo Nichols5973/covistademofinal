@@ -23,6 +23,13 @@ const before = (xml.match(rawAmp) || []).length;
 xml = xml.replace(rawAmp, '&amp;');
 if (before) console.log(`escaped ${before} stray '&' in JCR XML`);
 
+// Collapse md2jcr's double-encoded ampersand in escaped rich text
+// ("Vision &amp;#x26; Values" -> "Vision &amp; Values") so it renders as a
+// literal '&' rather than the visible text "&#x26;".
+const dblAmp = (xml.match(/&amp;#x26;/g) || []).length;
+xml = xml.replace(/&amp;#x26;/g, '&amp;');
+if (dblAmp) console.log(`normalised ${dblAmp} double-encoded '&' in JCR XML`);
+
 // Write the page node .content.xml at the target JCR path.
 const pageDir = path.join(OUT, 'jcr_root', TARGET.slice(1));
 fs.mkdirSync(pageDir, { recursive: true });
@@ -42,7 +49,7 @@ fs.writeFileSync(path.join(metaDir, 'properties.xml'), `<?xml version="1.0" enco
 <properties>
   <entry key="name">covista-pvv-page</entry>
   <entry key="group">covista</entry>
-  <entry key="version">1.0</entry>
+  <entry key="version">1.2</entry>
 </properties>
 `, 'utf8');
 
