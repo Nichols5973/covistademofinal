@@ -12,6 +12,16 @@
  * Selectors validated against source.html.
  */
 export default function parse(element, { document }) {
+  // Testimonial carousels duplicate slides as loop "clones" (e.g. Slick's
+  // "slick-cloned", Swiper's "swiper-slide-duplicate"); skip them so a single
+  // logical quote isn't imported multiple times. Harmless for the /our-story
+  // single pull-quote source, which has no carousel clones.
+  const cls = element.className || '';
+  if (/clone|duplicate/i.test(cls)) {
+    element.remove();
+    return;
+  }
+
   // Portrait image (Steve Beard) — first real <img> that is not the decorative SVG overlay.
   let portrait = null;
   const imgs = element.querySelectorAll('img');
@@ -20,10 +30,11 @@ export default function parse(element, { document }) {
     if (!portrait && !src.startsWith('data:')) portrait = img;
   });
 
-  // Quotation text.
-  const quote = element.querySelector('.e-quote, blockquote, .p-carousel__content--subheading .cc-txt-tertiary');
-  // Attribution: name + title paragraph following the quote.
-  const attribution = element.querySelector('.p-carousel__content--subheading > p, .e-quote ~ p, .p-carousel__content-headings p');
+  // Quotation text. Covers the /our-story pull-quote (.e-quote/blockquote) and
+  // the testimonial carousel here, whose quote text sits in the slide heading.
+  const quote = element.querySelector('.e-quote, blockquote, .p-carousel__content--heading, .p-cv-carousel__content--heading, .p-carousel__content--subheading .cc-txt-tertiary');
+  // Attribution: name + title following the quote (carousel: the subheading block).
+  const attribution = element.querySelector('.p-carousel__content--subheading > p, .p-carousel__content--subheading, .p-cv-carousel__content--subheading, .e-quote ~ p, .p-carousel__content-headings p');
 
   // Empty-block guard.
   if (!portrait && !quote && !attribution) {

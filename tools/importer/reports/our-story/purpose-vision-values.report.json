@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "url": "https://www.covista.com/our-story/purpose-vision-values",
+  "path": "our-story/purpose-vision-values",
+  "timestamp": "2026-09-02T16:33:34.707Z",
+  "title": "Purpose, Vision & Values | Covista",
+  "template": "purpose-vision-values",
+  "blocks": [
+    "columns-nav",
+    "columns-accent",
+    "columns-accent",
+    "columns-approach",
+    "quote-accent",
+    "quote-accent",
+    "quote-accent",
+    "quote-accent",
+    "quote-accent",
+    "accordion-faq",
+    "columns-links"
+  ]
+}

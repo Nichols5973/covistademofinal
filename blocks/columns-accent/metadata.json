@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-accent",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-09-02T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.covista.com/our-story/purpose-vision-values",
+    "originPage": "Purpose, Vision & Values",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "accent",
+    "density": "spacious",
+    "purpose": "accent-media-text",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "media column + text column (eyebrow + heading + paragraph, no CTA)",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "soft-pink / accent-background side-by-side media and text bands",
+      "purpose / vision statement rows with a colored eyebrow and heading and no call-to-action",
+      "full-bleed editorial image + copy sections that alternate image side"
+    ],
+    "notSuitableFor": [
+      "white-background feature rows with a CTA button (use columns-feature)",
+      "dark-green media bands (use columns-dark)",
+      "in-page anchor navigation (use columns-nav)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/our-story/purpose-vision-values"],
+    "reuseCount": 2,
+    "lastUsed": "2026-09-02T00:00:00.000Z"
+  }
+}

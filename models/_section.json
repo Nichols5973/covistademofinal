@@ -48,6 +48,8 @@
         "cards",
         "carousel",
         "columns",
+        "columns-accent",
+        "columns-links",
         "contentfragment",
         "embed",
         "form",

@@ -1,0 +1,74 @@
+/* columns-links — mid-page "explore more" band: a heading column beside a
+   stacked list of arrow-led navigation links. Source: the "Learn more about
+   Covista" section on covista.com/our-story/purpose-vision-values.
+   NOT the sticky top-of-page anchor bar (that is columns-nav). */
+
+/* mobile-first: stack heading over links */
+.columns-links > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.columns-links h2 {
+  margin: 0;
+  font-family: acumin-pro-wide-medium, sans-serif;
+  font-size: var(--heading-font-size-xl); /* 40px */
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  color: var(--dark-color);
+}
+
+/* links column: each link becomes a full-width row with a trailing arrow and
+   a divider rule, matching the source "explore more" list. */
+.columns-links-list-col .button-container {
+  margin: 0;
+}
+
+.columns-links-list-col a.button:any-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid rgb(0 0 0 / 15%);
+  border-radius: 0;
+  padding: 18px 0;
+  background: none;
+  color: var(--dark-color);
+  font-family: acumin-pro-wide-medium, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.27px;
+  text-decoration: none;
+  white-space: normal;
+}
+
+.columns-links-list-col a.button:any-link::after {
+  content: "\2192"; /* right arrow */
+  margin-left: 24px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.columns-links-list-col a.button:any-link:hover {
+  background: none;
+  color: var(--link-hover-color, var(--dark-color));
+  text-decoration: none;
+}
+
+@media (width >= 900px) {
+  .columns-links > div {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+  }
+
+  .columns-links > div > div {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}

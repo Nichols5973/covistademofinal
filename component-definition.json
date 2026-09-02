@@ -207,6 +207,21 @@
           }
         },
         {
+          "title": "Columns Accent",
+          "id": "columns-accent",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/columns/v1/columns",
+                "template": {
+                  "columns": "2",
+                  "rows": "1"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Columns Approach",
           "id": "columns-approach",
           "plugins": {
@@ -239,6 +254,21 @@
         {
           "title": "Columns Feature",
           "id": "columns-feature",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/columns/v1/columns",
+                "template": {
+                  "columns": "2",
+                  "rows": "1"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Columns Links",
+          "id": "columns-links",
           "plugins": {
             "xwalk": {
               "page": {

@@ -9,8 +9,7 @@
         "https://www.covista.com/our-story"
       ],
       "representativeUrl": "https://www.covista.com/our-story",
-      "description": "Our Story narrative page: hero banner, sticky anchor nav, approach feature list, pull-quote, dark media section, three image+text+CTA feature sections, FAQ accordion, and a footnote.",
-      "urlPattern": "/*",
+      "description": "To be named in naming step",
       "blocks": [
         {
           "name": "hero-overlay",
@@ -157,6 +156,137 @@
           "defaultContent": [
             "div.t-layout__one-column.standard-width.p-universal-bg-color--none.pad-top-40.pad-bottom-30.p-section__align--none.layout.layout--atge-one-column"
           ]
+        }
+      ],
+      "urlPattern": "/*"
+    },
+    {
+      "name": "purpose-vision-values",
+      "urls": [
+        "https://www.covista.com/our-story/purpose-vision-values"
+      ],
+      "representativeUrl": "https://www.covista.com/our-story/purpose-vision-values",
+      "description": "Purpose, Vision & Values page: hero banner, purpose statement with image, vision + 5 values list, two pull-quotes, FAQ accordion, and a \"Learn more\" links band.",
+      "blocks": [
+        {
+          "name": "columns-nav",
+          "instances": [
+            "div.t-layout__one-column.standard-width.p-universal-bg-color--white.pad-top-0.pad-bottom-0.p-section__align--none.layout.layout--atge-one-column"
+          ]
+        },
+        {
+          "name": "columns-accent",
+          "instances": [
+            "#purpose",
+            "#vision"
+          ]
+        },
+        {
+          "name": "columns-approach",
+          "instances": [
+            "#values"
+          ]
+        },
+        {
+          "name": "quote-accent",
+          "instances": [
+            "div.t-layout__one-column.standard-width.p-universal-bg-color--secondary.pad-bottom-40.p-section__align--none.layout.layout--atge-one-column .c-carousel__item.c-cv-carousel__item"
+          ]
+        },
+        {
+          "name": "accordion-faq",
+          "instances": [
+            "#faqs"
+          ]
+        },
+        {
+          "name": "columns-links",
+          "instances": [
+            "div.t-layout__two-column.standard-width.layout__split--5050.sidebar-first.sidebar-left.p-universal-bg-color--secondary.pad-top-10.pad-bottom-40.p-section__align--none.layout__spacing--default.no_constrain_bg_witdh.layout.layout--atge-two-column"
+          ]
+        }
+      ],
+      "urlPattern": "/our-story/*",
+      "sections": [
+        {
+          "id": "pvv-subnav",
+          "name": "Sticky sub-navigation",
+          "selector": "div.t-layout__one-column.standard-width.p-universal-bg-color--white.pad-top-0.pad-bottom-0.p-section__align--none.layout.layout--atge-one-column",
+          "style": null,
+          "blocks": [
+            "columns-nav"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "pvv-hero",
+          "name": "Hero banner",
+          "selector": "div.t-layout__one-column.edge-to-edge.no-padding.no-max-width.p-universal-bg-color--none.p-section__align--none.layout.layout--atge-one-column",
+          "style": "light",
+          "blocks": [],
+          "defaultContent": [
+            "div.t-layout__one-column.edge-to-edge.no-padding.no-max-width.p-universal-bg-color--none.p-section__align--none.layout.layout--atge-one-column"
+          ]
+        },
+        {
+          "id": "pvv-purpose",
+          "name": "Our purpose accent band",
+          "selector": "#purpose",
+          "style": "soft-pink",
+          "blocks": [
+            "columns-accent"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "pvv-vision",
+          "name": "Our vision accent band",
+          "selector": "#vision",
+          "style": "soft-pink",
+          "blocks": [
+            "columns-accent"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "pvv-values",
+          "name": "Our values list",
+          "selector": "#values",
+          "style": "soft-pink",
+          "blocks": [
+            "columns-approach"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "pvv-quotes",
+          "name": "Testimonials",
+          "selector": "div.t-layout__one-column.standard-width.p-universal-bg-color--secondary.pad-bottom-40.p-section__align--none.layout.layout--atge-one-column",
+          "style": "soft-pink",
+          "blocks": [
+            "quote-accent"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "pvv-faqs",
+          "name": "FAQ",
+          "selector": "#faqs",
+          "style": "light",
+          "blocks": [
+            "accordion-faq"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "pvv-learnmore",
+          "name": "Learn more links",
+          "selector": "div.t-layout__two-column.standard-width.layout__split--5050.sidebar-first.sidebar-left.p-universal-bg-color--secondary.pad-top-10.pad-bottom-40.p-section__align--none.layout__spacing--default.no_constrain_bg_witdh.layout.layout--atge-two-column",
+          "style": "soft-pink",
+          "blocks": [
+            "columns-links"
+          ],
+          "defaultContent": []
         }
       ]
     }

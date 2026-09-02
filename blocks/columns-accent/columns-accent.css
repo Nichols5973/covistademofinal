@@ -1,0 +1,110 @@
+/* columns-accent — soft-pink (accent) media + copy band with a colored
+   eyebrow + heading and no CTA. Two rows on the source
+   (covista.com/our-story/purpose-vision-values: "Our purpose" and "Our vision").
+   Full-bleed edge-to-edge; consecutive rows alternate the image side. */
+
+/* full-bleed: source rows span the viewport, not the 1200px section grid */
+.columns-accent-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.columns-accent {
+  background-color: var(--accent-background-color, #f5e3e1);
+}
+
+/* mobile-first: stack image over copy */
+.columns-accent > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-accent img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.columns-accent > div > div {
+  order: 1;
+  padding: 32px 24px;
+}
+
+.columns-accent > div > .columns-accent-img-col {
+  order: 0;
+  padding: 0;
+}
+
+.columns-accent > div > .columns-accent-img-col img {
+  aspect-ratio: 570 / 460;
+}
+
+/* eyebrow: the source renders a short bold label above the heading */
+.columns-accent h3 {
+  margin: 0 0 12px;
+  font-family: acumin-pro-wide-semi, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  color: #000;
+}
+
+/* heading — large light serif; source color is the mauve/coral accent tone */
+.columns-accent h2 {
+  margin: 0;
+  font-family: albiona-light, georgia, 'Times New Roman', serif;
+  font-size: var(--heading-font-size-xl); /* 40px */
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  color: #82404c;
+}
+
+.columns-accent p {
+  margin: 18px 0 0;
+  font-family: acumin-pro-wide-light, sans-serif;
+  font-size: var(--body-font-size-m); /* 18px */
+  font-weight: 400;
+  line-height: 29.88px;
+  letter-spacing: -0.27px;
+  color: #000;
+}
+
+@media (width >= 900px) {
+  .columns-accent > div {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  /* image column: fixed source proportion */
+  .columns-accent > div > .columns-accent-img-col {
+    flex: 0 0 50%;
+    max-width: 50%;
+    order: unset;
+    display: flex;
+  }
+
+  .columns-accent > div > .columns-accent-img-col img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  /* copy column: vertically centered with generous side padding */
+  .columns-accent > div > div {
+    flex: 1 1 0;
+    min-width: 0;
+    order: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 90px;
+  }
+
+  /* reversed instances (vision row): image on the left, copy on the right.
+     Extra class keeps specificity above the base copy-column rule so the
+     override wins and lint ordering stays ascending. */
+  .columns-accent.columns-accent-reverse > div {
+    flex-direction: row-reverse;
+  }
+}

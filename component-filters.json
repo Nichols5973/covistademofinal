@@ -13,6 +13,8 @@
       "cards",
       "carousel",
       "columns",
+      "columns-accent",
+      "columns-links",
       "contentfragment",
       "embed",
       "form",
@@ -53,6 +55,21 @@
     ]
   },
   {
+    "id": "columns-accent",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
+  },
+  {
     "id": "columns-approach",
     "components": [
       "column"
@@ -84,6 +101,21 @@
   },
   {
     "id": "columns-feature",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
+  },
+  {
+    "id": "columns-links",
     "components": [
       "column"
     ]

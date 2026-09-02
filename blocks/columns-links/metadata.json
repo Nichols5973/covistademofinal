@@ -1,0 +1,37 @@
+{
+  "variantName": "columns-links",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-09-02T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.covista.com/our-story/purpose-vision-values",
+    "originPage": "Purpose, Vision & Values",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "explore-more-links",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading column + arrow-led navigation link-list column",
+    "buttonCount": 3,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "mid/bottom-of-page 'learn more' or 'explore more' link bands",
+      "a section heading beside a stacked list of arrow-led related-page links"
+    ],
+    "notSuitableFor": [
+      "sticky top-of-page in-page anchor navigation (use columns-nav)",
+      "media + text feature rows (use columns-feature / columns-accent)"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/our-story/purpose-vision-values"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-02T00:00:00.000Z"
+  }
+}
