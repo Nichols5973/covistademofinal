@@ -185,7 +185,17 @@ function attachEventListners(main) {
     'aue:content-copy',
   ].forEach((eventType) => main?.addEventListener(eventType, async (event) => {
     event.stopPropagation();
-    const applied = await applyChanges(event);
+    // If applyChanges either returns false OR throws, fall back to a full
+    // reload. Without the try/catch, a thrown error skips both the old-block
+    // removal and this reload, leaving a duplicated block stranded in the
+    // editor canvas.
+    let applied = false;
+    try {
+      applied = await applyChanges(event);
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error('editor-support: applyChanges failed, reloading', e);
+    }
     if (!applied) window.location.reload();
   }));
 
