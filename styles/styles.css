@@ -474,8 +474,48 @@ main .section.soft-pink.columns-container:not(:has(.columns-img-col)) h3 {
    as default content (no block). our-story has NO light section with an <h1>
    (its H1 lives in hero-overlay-container), so :has(h1) targets only pvv. */
 main .section.light:has(h1) {
+  position: relative;
+  overflow: hidden;
   background-color: #e8edea; /* source light grey-green banner */
   padding: 56px 0 64px;
+}
+
+/* Decorative checkerboard motif, top-right of the hero (matches the source).
+   A grid of green-shade squares drawn with layered gradients — decorative
+   only, hidden from assistive tech, and hidden on narrow screens where the
+   source also drops it. */
+main .section.light:has(h1)::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 0;
+  width: 300px;
+  height: 300px;
+  background-image:
+    linear-gradient(#3a6b4c, #3a6b4c), linear-gradient(#c7d6cc, #c7d6cc), linear-gradient(#1b4929, #1b4929), linear-gradient(#8fae9b, #8fae9b), linear-gradient(#5c8a6d, #5c8a6d),
+    linear-gradient(#c7d6cc, #c7d6cc), linear-gradient(#1b4929, #1b4929), linear-gradient(#5c8a6d, #5c8a6d), linear-gradient(#3a6b4c, #3a6b4c), linear-gradient(#8fae9b, #8fae9b),
+    linear-gradient(#8fae9b, #8fae9b), linear-gradient(#5c8a6d, #5c8a6d), linear-gradient(#c7d6cc, #c7d6cc), linear-gradient(#1b4929, #1b4929), linear-gradient(#3a6b4c, #3a6b4c);
+  background-repeat: no-repeat;
+  background-size: 44px 44px;
+  background-position:
+    0 0, 64px 0, 128px 0, 192px 0, 256px 0,
+    0 64px, 64px 64px, 128px 64px, 192px 64px, 256px 64px,
+    0 128px, 64px 128px, 128px 128px, 192px 128px, 256px 128px;
+  pointer-events: none;
+}
+
+/* keep hero text above the decoration */
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.light:has(h1) > div {
+  position: relative;
+  z-index: 1;
+}
+
+@media (width < 900px) {
+  main .section.light:has(h1)::after {
+    display: none;
+  }
 }
 
 /* Brand-green H1, matching the source hero. */
