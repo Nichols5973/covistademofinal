@@ -37,18 +37,20 @@ fs.writeFileSync(path.join(metaDir, 'properties.xml'), `<?xml version="1.0" enco
 `, 'utf8');
 
 // zip it — use python's zipfile (the `zip` binary is not always available).
+// Write the script to a temp file rather than `python3 -c` so embedded
+// newlines survive shell quoting.
 const zipPath = path.join(ROOT, 'tools/importer/packages/covista-pvv-page-content.zip');
 try { fs.unlinkSync(zipPath); } catch { /* noop */ }
-const py = [
-  'import zipfile, os',
-  `out=${JSON.stringify(zipPath)}`,
-  `base=${JSON.stringify(OUT)}`,
-  'z=zipfile.ZipFile(out,"w",zipfile.ZIP_DEFLATED)',
-  'for root,_,files in os.walk(base):',
-  '    for f in files:',
-  '        full=os.path.join(root,f)',
-  '        z.write(full, os.path.relpath(full, base))',
-  'z.close()',
-].join('\n');
-execSync(`python3 -c ${JSON.stringify(py)}`, { stdio: 'inherit' });
+const pyScript = `import zipfile, os
+out = ${JSON.stringify(zipPath)}
+base = ${JSON.stringify(OUT)}
+with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
+    for root, _, files in os.walk(base):
+        for f in files:
+            full = os.path.join(root, f)
+            z.write(full, os.path.relpath(full, base))
+`;
+const pyPath = path.join(OUT, '_zip.py');
+fs.writeFileSync(pyPath, pyScript, 'utf8');
+execSync(`python3 ${JSON.stringify(pyPath)}`, { stdio: 'inherit' });
 console.log(`\nPackage: ${zipPath}`);
