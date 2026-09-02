@@ -487,21 +487,25 @@ main .section.light:has(h1) {
 main .section.light:has(h1)::after {
   content: '';
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 28px;
+  right: 40px;
   z-index: 0;
-  width: 300px;
-  height: 300px;
+  width: 150px;
+  height: 150px;
   background-image:
-    linear-gradient(#3a6b4c, #3a6b4c), linear-gradient(#c7d6cc, #c7d6cc), linear-gradient(#1b4929, #1b4929), linear-gradient(#8fae9b, #8fae9b), linear-gradient(#5c8a6d, #5c8a6d),
-    linear-gradient(#c7d6cc, #c7d6cc), linear-gradient(#1b4929, #1b4929), linear-gradient(#5c8a6d, #5c8a6d), linear-gradient(#3a6b4c, #3a6b4c), linear-gradient(#8fae9b, #8fae9b),
-    linear-gradient(#8fae9b, #8fae9b), linear-gradient(#5c8a6d, #5c8a6d), linear-gradient(#c7d6cc, #c7d6cc), linear-gradient(#1b4929, #1b4929), linear-gradient(#3a6b4c, #3a6b4c);
+    linear-gradient(#3a6b4c, #3a6b4c), linear-gradient(#1b4929, #1b4929), linear-gradient(#5c8a6d, #5c8a6d), linear-gradient(#1b4929, #1b4929), linear-gradient(#3a6b4c, #3a6b4c),
+    linear-gradient(#1b4929, #1b4929), linear-gradient(#5c8a6d, #5c8a6d), linear-gradient(#3a6b4c, #3a6b4c), linear-gradient(#5c8a6d, #5c8a6d), linear-gradient(#1b4929, #1b4929),
+    linear-gradient(#5c8a6d, #5c8a6d), linear-gradient(#3a6b4c, #3a6b4c), linear-gradient(#1b4929, #1b4929), linear-gradient(#3a6b4c, #3a6b4c), linear-gradient(#5c8a6d, #5c8a6d),
+    linear-gradient(#1b4929, #1b4929), linear-gradient(#5c8a6d, #5c8a6d), linear-gradient(#3a6b4c, #3a6b4c), linear-gradient(#1b4929, #1b4929), linear-gradient(#3a6b4c, #3a6b4c),
+    linear-gradient(#3a6b4c, #3a6b4c), linear-gradient(#1b4929, #1b4929), linear-gradient(#5c8a6d, #5c8a6d), linear-gradient(#5c8a6d, #5c8a6d), linear-gradient(#1b4929, #1b4929);
   background-repeat: no-repeat;
-  background-size: 44px 44px;
+  background-size: 18px 18px;
   background-position:
-    0 0, 64px 0, 128px 0, 192px 0, 256px 0,
-    0 64px, 64px 64px, 128px 64px, 192px 64px, 256px 64px,
-    0 128px, 64px 128px, 128px 128px, 192px 128px, 256px 128px;
+    0 0, 30px 0, 60px 0, 90px 0, 120px 0,
+    0 30px, 30px 30px, 60px 30px, 90px 30px, 120px 30px,
+    0 60px, 30px 60px, 60px 60px, 90px 60px, 120px 60px,
+    0 90px, 30px 90px, 60px 90px, 90px 90px, 120px 90px,
+    0 120px, 30px 120px, 60px 120px, 90px 120px, 120px 120px;
   pointer-events: none;
 }
 
