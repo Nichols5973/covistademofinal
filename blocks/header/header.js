@@ -91,7 +91,7 @@ export default async function decorate(block) {
   let brandImg = [...frag.querySelectorAll('img')].find((im) => !im.closest('ul'));
   if (!brandImg && brandSection) brandImg = brandSection.querySelector('img');
   if (brandImg) {
-    brandImg.src = new URL('../../icons/covista-logo.svg', import.meta.url).href;
+    brandImg.src = `${window.hlx.codeBasePath}/icons/covista-logo.svg`;
     brandImg.setAttribute('alt', brandImg.getAttribute('alt') || 'Covista');
     let logoLink = brandImg.closest('a');
     if (!logoLink) {
@@ -122,7 +122,7 @@ export default async function decorate(block) {
           panel.className = 'nav-dropdown';
           if (logoMark) {
             const markImg = logoMark.querySelector('img');
-            if (markImg) markImg.src = new URL('../../icons/nav-logomark.webp', import.meta.url).href;
+            if (markImg) markImg.src = `${window.hlx.codeBasePath}/icons/nav-logomark.webp`;
             panel.append(logoMark);
           }
           panel.append(subList);
