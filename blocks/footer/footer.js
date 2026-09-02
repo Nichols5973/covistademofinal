@@ -27,9 +27,12 @@ async function loadFooterFragment() {
   // works both on the published EDS site (/footer.plain.html) and in the AEM
   // author / Universal Editor canvas (/content/covistademo1/footer.plain.html).
   const dir = window.location.pathname.replace(/[^/]*$/, '');
+  // The footer fragment lives in one shared location, not per-page-directory.
+  // Try the known absolute path first (stops the loop before any 404 probe),
+  // then fall back to a relative/root path for clean-URL deployments.
   const candidates = [
-    `${dir}footer.plain.html`,
     '/content/covistademo1/footer.plain.html',
+    `${dir}footer.plain.html`,
     '/content/footer.plain.html',
     '/footer.plain.html',
   ];

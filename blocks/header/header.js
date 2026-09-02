@@ -15,9 +15,12 @@ async function loadNavFragment() {
   // and in the AEM author / Universal Editor canvas (page at
   // /content/covistademo1/our-story.html → /content/covistademo1/nav.plain.html).
   const dir = window.location.pathname.replace(/[^/]*$/, '');
+  // The nav fragment lives in one shared location, not per-page-directory.
+  // Try the known absolute path first (stops the loop before any 404 probe),
+  // then fall back to a relative/root path for clean-URL deployments.
   const candidates = [
-    `${dir}nav.plain.html`,
     '/content/covistademo1/nav.plain.html',
+    `${dir}nav.plain.html`,
     '/content/nav.plain.html',
     '/nav.plain.html',
   ];
