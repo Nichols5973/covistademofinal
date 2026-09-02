@@ -413,14 +413,13 @@ main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col
 
   main .section.soft-pink.columns-container:has(.columns-img-col) .columns-img-col img {
     height: 100%;
-    max-height: none;
+    max-height: 460px;
   }
 
-  /* Image-side alternation matching the source: "Our purpose" = text left /
-     image right; "Our vision" = image left / text right. Each band is
-     identified by its unique inner heading id. Base DOM order is IMG,TEXT so
-     the purpose band is reversed to put text first. */
-  main .section.soft-pink.columns-container:has(#we-open-doors-and-unlock-potential) .columns > div {
+  /* Image-side alternation: "Our purpose" = image left / text right (base DOM
+     order is IMG,TEXT, so no reverse). "Our vision" = image right / text left
+     (reversed). Each band is identified by its unique inner heading id. */
+  main .section.soft-pink.columns-container:has(#to-be-the-destination-where-healthcare-ambitions-are-made-possible) .columns > div {
     flex-direction: row-reverse;
   }
 }
